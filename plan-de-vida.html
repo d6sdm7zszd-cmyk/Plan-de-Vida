@@ -478,9 +478,61 @@ function getTodayMysterySet(d=new Date()){
   return {key:'gozosos', ...MYSTERY_SETS.gozosos};
 }
 
+// Calcula la fecha del Domingo de Pascua para un año dado
+// (algoritmo del cómputo gregoriano, "Anónimo" de Meeus/Jones/Butcher).
+function getEasterDate(year){
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19*a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2*e + 2*i - h - k) % 7;
+  const m = Math.floor((a + 11*h + 22*l) / 451);
+  const month = Math.floor((h + l - 7*m + 114) / 31); // 3 = marzo, 4 = abril
+  const day = ((h + l - 7*m + 114) % 31) + 1;
+  return new Date(year, month - 1, day);
+}
+
+// El tiempo de Pascua va del Domingo de Resurrección a Pentecostés
+// (49 días después), inclusive. En ese periodo se reza el Regina Coeli
+// en vez del Ángelus.
+function isEastertide(d=new Date()){
+  const easter = getEasterDate(d.getFullYear());
+  const pentecost = new Date(easter);
+  pentecost.setDate(pentecost.getDate() + 49);
+  const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  return today >= easter && today <= pentecost;
+}
+
+// Devuelve el texto correcto (Ángelus o Regina Coeli) según el
+// calendario litúrgico de hoy: la etiqueta a mostrar, el texto de
+// lectura (con versículo/respuesta) y una versión fluida para
+// escuchar en voz alta.
+function getAngelusInfo(d=new Date()){
+  if(isEastertide(d)){
+    return {
+      label: 'Regina Coeli',
+      guideText: 'En tiempo de Pascua, el Regina Coeli sustituye al Ángelus, celebrando la Resurrección del Señor (al terminar la Pascua se vuelve a rezar el Ángelus):\n\nReina del cielo, alégrate; aleluya.\nPorque el Señor, a quien tuviste la dicha de llevar en tu seno; aleluya.\nHa resucitado, según predijo; aleluya.\nRuega a Dios por nosotros; aleluya.\n\nV. Gózate y alégrate, Virgen María; aleluya.\nR. Porque en verdad ha resucitado el Señor; aleluya.\n\nOremos: Oh Dios, que por la resurrección de tu Hijo, nuestro Señor Jesucristo, te dignaste llenar de gozo al mundo, concédenos que, por su Madre, la Virgen María, alcancemos los gozos de la vida eterna. Por el mismo Jesucristo Nuestro Señor. Amén.',
+      spokenText: 'Reina del cielo, alégrate, aleluya. Porque el Señor, a quien tuviste la dicha de llevar en tu seno, aleluya. Ha resucitado, según predijo, aleluya. Ruega a Dios por nosotros, aleluya. Gózate y alégrate, Virgen María, aleluya. Porque en verdad ha resucitado el Señor, aleluya. Oremos: Oh Dios, que por la resurrección de tu Hijo, nuestro Señor Jesucristo, te dignaste llenar de gozo al mundo, concédenos que, por su Madre, la Virgen María, alcancemos los gozos de la vida eterna. Por el mismo Jesucristo Nuestro Señor. Amén.'
+    };
+  }
+  return {
+    label: 'Ángelus',
+    guideText: 'Al mediodía, el Ángelus recuerda la Encarnación del Hijo de Dios (en tiempo de Pascua se reza el Regina Coeli en su lugar):\n\nV. El Ángel del Señor anunció a María.\nR. Y concibió por obra y gracia del Espíritu Santo.\nDios te salve, María…\n\nV. He aquí la esclava del Señor.\nR. Hágase en mí según tu palabra.\nDios te salve, María…\n\nV. Y el Verbo se hizo carne.\nR. Y habitó entre nosotros.\nDios te salve, María…\n\nV. Ruega por nosotros, Santa Madre de Dios.\nR. Para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo.\n\nOremos: Infunde, Señor, tu gracia en nuestras almas, para que los que hemos conocido, por el anuncio del Ángel, la Encarnación de tu Hijo Jesucristo, por su Pasión y Cruz seamos llevados a la gloria de su Resurrección. Por el mismo Jesucristo, Nuestro Señor. Amén.',
+    spokenText: `El Ángel del Señor anunció a María. Y concibió por obra y gracia del Espíritu Santo. ${PRAYERS.avemaria} He aquí la esclava del Señor. Hágase en mí según tu palabra. ${PRAYERS.avemaria} Y el Verbo se hizo carne. Y habitó entre nosotros. ${PRAYERS.avemaria} Ruega por nosotros, Santa Madre de Dios. Para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo. Oremos: Infunde, Señor, tu gracia en nuestras almas, para que los que hemos conocido, por el anuncio del Ángel, la Encarnación de tu Hijo Jesucristo, por su Pasión y Cruz seamos llevados a la gloria de su Resurrección. Por el mismo Jesucristo, Nuestro Señor. Amén.`
+  };
+}
+
 
 let editing = {daily:false, weekly:false, monthly:false};
 let storageOk = true;
+let autoRosaryActive = false;
+let hailMaryLoopActive = false;
 
 function pad(n){return n<10?'0'+n:''+n;}
 function todayKey(d=new Date()){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;}
@@ -642,6 +694,26 @@ function stopSpeaking(){
   try{ if('speechSynthesis' in window) window.speechSynthesis.cancel(); }catch(e){}
 }
 
+// Igual que speak(), pero devuelve una promesa que se resuelve cuando
+// termina de pronunciarse — permite encadenar oraciones en secuencia
+// (modo manos libres) sin superponer audios.
+function speakAsync(text){
+  return new Promise((resolve)=>{
+    try{
+      if(!('speechSynthesis' in window)){ resolve(); return; }
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'es-ES';
+      utter.rate = 0.92;
+      const voice = pickSpanishVoice();
+      if(voice) utter.voice = voice;
+      utter.onend = ()=>resolve();
+      utter.onerror = ()=>resolve();
+      window.speechSynthesis.speak(utter);
+    }catch(e){ resolve(); }
+  });
+}
+function wait(ms){ return new Promise(r=>setTimeout(r, ms)); }
+
 async function getRosaryEntry(dateKey){
   const e = await safeGet(`entry:rosarymyst:${dateKey}`);
   return e || [];
@@ -652,6 +724,25 @@ async function toggleRosaryMystery(idx){
   const i = list.indexOf(idx);
   if(i>-1) list.splice(i,1); else list.push(idx);
   await safeSet(`entry:rosarymyst:${dKey}`, list);
+  if(list.length>=5){
+    const dailyEntry = await getEntry('daily', dKey);
+    if(!dailyEntry.includes('d7')){
+      dailyEntry.push('d7');
+      await safeSet(`entry:daily:${dKey}`, dailyEntry);
+    }
+  }
+  return list;
+}
+
+// Marca un misterio como rezado sin alternar (para el modo automático:
+// si ya estaba marcado, no lo desmarca).
+async function markRosaryMysteryDone(idx){
+  const dKey = todayKey();
+  const list = await getRosaryEntry(dKey);
+  if(!list.includes(idx)){
+    list.push(idx);
+    await safeSet(`entry:rosarymyst:${dKey}`, list);
+  }
   if(list.length>=5){
     const dailyEntry = await getEntry('daily', dKey);
     if(!dailyEntry.includes('d7')){
@@ -749,10 +840,12 @@ async function render(){
       </div>
       ${config.daily.map(it=>{
         const done = dailyEntry.includes(it.id);
+        const displayLabel = it.id==='d11' ? getAngelusInfo().label : it.label;
         return `<div class="item-row">
           <div class="chk ${done?'done':''}" data-kind="daily" data-id="${it.id}"></div>
-          <div class="item-label ${done?'done':''}">${escapeHtml(it.label)}</div>
+          <div class="item-label ${done?'done':''}">${escapeHtml(displayLabel)}</div>
           ${it.id==='d7' ? '<button class="rosary-btn" id="open-rosary-btn" title="Rezar el Rosario">📿</button>' : ''}
+          ${it.id==='d11' ? '<button class="rosary-btn" id="angelus-listen-btn" title="Escuchar">🔊</button>' : ''}
           <button class="guide-btn" data-kind="daily" data-id="${it.id}" title="Guía">i</button>
           <button class="item-remove" data-sec="daily" data-id="${it.id}">✕</button>
         </div>`;
@@ -829,23 +922,12 @@ async function render(){
     <div class="section">
       <div class="section-head">
         <div>
-          <div class="section-title">Los Siete Hábitos de Santidad</div>
-          <div class="section-sub">síntesis clásica del plan de vida</div>
+          <div class="section-title">Qué es el Plan de Vida</div>
+          <div class="section-sub">en las enseñanzas de san Josemaría</div>
         </div>
       </div>
-      <div class="mystery-text" style="margin-top:0;">Esta lista, difundida por el sacerdote C. John McCloskey (numerario del Opus Dei) y muy citada en medios católicos, resume en siete puntos los medios de un plan de vida sólido. Ya están integrados en tus "normas de cada día" de arriba, así que no necesitas marcarlos por separado:</div>
-      <div class="mystery-card" style="margin-top:10px;">
-        <div class="mystery-text" style="margin:0;">
-          <b style="color:var(--gold);">1. Ofrecimiento de la mañana</b> — entregar a Dios, al despertar, el día entero.<br><br>
-          <b style="color:var(--gold);">2. Oración mental</b> — un rato de conversación silenciosa con Dios.<br><br>
-          <b style="color:var(--gold);">3. Lectura espiritual</b> — el Nuevo Testamento y un libro clásico de espiritualidad.<br><br>
-          <b style="color:var(--gold);">4. Santa Misa y Comunión</b> — el hábito más importante de los siete.<br><br>
-          <b style="color:var(--gold);">5. Santo Rosario</b> — meditar la vida de Jesús con María.<br><br>
-          <b style="color:var(--gold);">6. Ángelus</b> — al mediodía, recordar la Encarnación.<br><br>
-          <b style="color:var(--gold);">7. Examen de conciencia</b> — antes de dormir, revisar el día con Dios.
-        </div>
-      </div>
-      <a class="modal-link" href="https://es.catholic.net/op/articulos/6290/cat/169/siete-habitos-diarios-para-las-personas-que-deseen-ser-santas.html" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:10px;">Leer el artículo completo ↗</a>
+      <div class="mystery-text" style="margin-top:0;">San Josemaría enseñaba que el plan de vida —las normas de piedad que ya tienes arriba— no es un fin en sí mismo, sino un medio indispensable para mantener viva la unión con Dios en medio del trabajo ordinario. Insistía en vivirlas todas, con constancia, también cuando cuestan o resultan áridas: "has de ser constante y exigente en tus normas de piedad, también cuando estás cansado o te resultan áridas".</div>
+      <a class="modal-link" href="https://opusdei.org/es-es/article/normas-plan-de-vida-opus-dei-josemaria-escriva/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:10px;">Leer el artículo completo ↗</a>
     </div>
 
     <div class="section">
@@ -973,13 +1055,26 @@ function attachHandlers(){
       const kind = e.currentTarget.dataset.kind;
       const id = e.currentTarget.dataset.id;
       const item = config[kind].find(it=>it.id===id);
-      if(item) openGuide(item);
+      if(!item) return;
+      if(id === 'd11'){
+        const info = getAngelusInfo();
+        openGuide({label: info.label, guide: {text: info.guideText, url: ''}});
+      } else {
+        openGuide(item);
+      }
     });
   });
 
   const openRosaryBtn = document.getElementById('open-rosary-btn');
   if(openRosaryBtn){
     openRosaryBtn.addEventListener('click', openRosary);
+  }
+
+  const angelusListenBtn = document.getElementById('angelus-listen-btn');
+  if(angelusListenBtn){
+    angelusListenBtn.addEventListener('click', ()=>{
+      speak(getAngelusInfo().spokenText);
+    });
   }
 
   const remEnabled = document.getElementById('rem-enabled');
@@ -1084,6 +1179,8 @@ async function openRosary(){
   document.getElementById('rosary-overlay').classList.add('show');
 }
 function closeRosary(){
+  autoRosaryActive = false;
+  hailMaryLoopActive = false;
   stopSpeaking();
   document.getElementById('rosary-overlay').classList.remove('show');
 }
@@ -1102,9 +1199,12 @@ async function renderRosaryPanel(){
 
     <div class="prayer-row">
       <button class="prayer-btn" data-prayer="padrenuestro">🔊 Padre Nuestro</button>
-      <button class="prayer-btn" data-prayer="avemaria">🔊 Ave María</button>
+      <button class="prayer-btn" id="avemaria-btn" data-prayer="avemaria">🔊 Ave María</button>
       <button class="prayer-btn" data-prayer="gloria">🔊 Gloria</button>
     </div>
+
+    <button class="listen-btn" id="auto-rosary-btn" style="width:100%;margin-bottom:6px;padding:11px;font-size:12.5px;">🚗 Modo manos libres (rezar todo automáticamente)</button>
+    <div class="rem-note" id="auto-status" style="text-align:center;min-height:14px;margin-bottom:14px;">Ideal para el carro o mientras caminas: reproduce en voz alta cada misterio, el Padre Nuestro, las diez Ave Marías y el Gloria, uno tras otro.</div>
 
     <div class="mode-toggle">
       <button class="mode-btn ${mode==='session'?'active':''}" data-mode="session">Sesión completa</button>
@@ -1152,9 +1252,20 @@ async function renderRosaryPanel(){
 
   panel.querySelectorAll('.prayer-btn').forEach(btn=>{
     btn.addEventListener('click', (e)=>{
-      speak(PRAYERS[e.currentTarget.dataset.prayer]);
+      const prayerKey = e.currentTarget.dataset.prayer;
+      if(prayerKey === 'avemaria'){
+        playHailMaryLoop(e.currentTarget);
+      } else {
+        hailMaryLoopActive = false;
+        speak(PRAYERS[prayerKey]);
+      }
     });
   });
+
+  const autoBtn = document.getElementById('auto-rosary-btn');
+  if(autoBtn){
+    autoBtn.addEventListener('click', startAutoRosary);
+  }
 
   panel.querySelectorAll('.mode-btn').forEach(btn=>{
     btn.addEventListener('click', async (e)=>{
@@ -1166,6 +1277,8 @@ async function renderRosaryPanel(){
 
   panel.querySelectorAll('[data-mystery-idx]').forEach(el=>{
     el.addEventListener('click', async (e)=>{
+      autoRosaryActive = false;
+      hailMaryLoopActive = false;
       stopSpeaking();
       await toggleRosaryMystery(+e.currentTarget.dataset.mysteryIdx);
       renderRosaryPanel();
@@ -1175,6 +1288,8 @@ async function renderRosaryPanel(){
 
   panel.querySelectorAll('[data-speak]').forEach(btn=>{
     btn.addEventListener('click', (e)=>{
+      autoRosaryActive = false;
+      hailMaryLoopActive = false;
       const idx = +e.currentTarget.dataset.speak;
       const m = set.list[idx];
       speak(`${m.title}. ${m.text}`);
@@ -1203,6 +1318,106 @@ async function renderRosaryPanel(){
       await saveConfig();
     });
   }
+}
+
+// Reza el Ave María 10 veces seguidas en voz alta, mostrando el conteo
+// en el propio botón. Tocarlo de nuevo mientras suena lo detiene.
+async function playHailMaryLoop(btn){
+  if(hailMaryLoopActive){
+    hailMaryLoopActive = false;
+    stopSpeaking();
+    btn.textContent = '🔊 Ave María';
+    return;
+  }
+  autoRosaryActive = false; // no mezclar con el modo automático completo
+  hailMaryLoopActive = true;
+  for(let i=1; i<=10; i++){
+    if(!hailMaryLoopActive) break;
+    btn.textContent = `🔊 Ave María (${i}/10)`;
+    await speakAsync(PRAYERS.avemaria);
+    await wait(250);
+  }
+  hailMaryLoopActive = false;
+  btn.textContent = '🔊 Ave María';
+}
+
+// Marca visualmente una tarjeta de misterio como rezada sin volver a
+// renderizar todo el panel (para no cortar el modo automático).
+function markMysteryDoneVisually(idx){
+  const cards = document.querySelectorAll('#rosary-panel-content .mystery-card');
+  const card = cards[idx];
+  if(!card) return;
+  card.classList.add('done');
+  const box = card.querySelector('.myst-box');
+  if(box) box.classList.add('done');
+  const title = card.querySelector('.mystery-title');
+  if(title) title.classList.add('done');
+}
+
+// Modo manos libres: recorre los 5 misterios de hoy reproduciendo en
+// voz alta la meditación, el Padre Nuestro, las diez Ave Marías (con
+// conteo en pantalla) y el Gloria de cada uno, en secuencia. Pensado
+// para usarse en el carro o caminando, sin tocar el teléfono.
+async function startAutoRosary(){
+  const btn = document.getElementById('auto-rosary-btn');
+  const statusEl = document.getElementById('auto-status');
+
+  if(autoRosaryActive){
+    autoRosaryActive = false;
+    stopSpeaking();
+    if(btn) btn.textContent = '🚗 Modo manos libres (rezar todo automáticamente)';
+    if(statusEl) statusEl.textContent = 'Modo automático detenido.';
+    return;
+  }
+
+  hailMaryLoopActive = false;
+  autoRosaryActive = true;
+  if(btn) btn.textContent = '⏹ Detener modo automático';
+  const set = getTodayMysterySet();
+
+  for(let i=0; i<set.list.length; i++){
+    if(!autoRosaryActive) break;
+    const m = set.list[i];
+
+    if(statusEl) statusEl.textContent = `${i+1}º misterio: ${m.title} — meditación`;
+    await speakAsync(`${m.title}. ${m.text}`);
+    if(!autoRosaryActive) break;
+    await wait(400);
+
+    if(statusEl) statusEl.textContent = `${i+1}º misterio — Padre Nuestro`;
+    await speakAsync(PRAYERS.padrenuestro);
+    if(!autoRosaryActive) break;
+    await wait(300);
+
+    for(let h=1; h<=10; h++){
+      if(!autoRosaryActive) break;
+      if(statusEl) statusEl.textContent = `${i+1}º misterio — Ave María (${h}/10)`;
+      await speakAsync(PRAYERS.avemaria);
+      await wait(200);
+    }
+    if(!autoRosaryActive) break;
+
+    if(statusEl) statusEl.textContent = `${i+1}º misterio — Gloria`;
+    await speakAsync(PRAYERS.gloria);
+    if(!autoRosaryActive) break;
+
+    await markRosaryMysteryDone(i);
+    markMysteryDoneVisually(i);
+    const progressEl = document.querySelector('#rosary-panel-content .rosary-progress');
+    if(progressEl){
+      const prayedNow = await getRosaryEntry(todayKey());
+      progressEl.textContent = `${prayedNow.length}/5 misterios rezados hoy`;
+    }
+    render();
+    await wait(600);
+  }
+
+  const finished = autoRosaryActive;
+  autoRosaryActive = false;
+  if(btn) btn.textContent = '🚗 Modo manos libres (rezar todo automáticamente)';
+  if(statusEl) statusEl.textContent = finished
+    ? 'Rosario completo. Que Dios te bendiga. 🙏'
+    : 'Modo automático detenido.';
 }
 
 function showToast(msg){
