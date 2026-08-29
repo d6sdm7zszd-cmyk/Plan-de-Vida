@@ -1,1 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAARbElEQVR4nO3dMVZkOZqG4aBOGnmwMLHbZCNj1mbGLqPs2UyZs5mxcwWcNMegDklCENy4IV390vc8ZnVXdtBX+l8pIoG7h8enEwB5/hj9AgAYQwAAQgkAQCgBAAglAAChBAAglAAAhBIAgFACABBKAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEEoAAEIJAEAoAQAIJQAAoQQAIJQAAIQSAIBQAgAQ6tvoFwBdfL9/bPsH/nz+0fYPhOEEgIk1n/L7/re0gUkJAHM4ctZf6+xrUwXqEwCKqjzxt3j3+vWAggSAKmaf+JfpAQUJACOtPfQvePuFiwGjCABHix36nxEDRhEADmLub/H6/5IScAABoC9zfx8l4AACQBfmfitKQD8CQEvmfj9KQHMCQAPm/pGUgFYEgJsY/QO9/J8vA+wmAOxh7tfhQsBuAsB1jP6yXAi4lgCwibk/CxcCthMAvmD0T8qFgC8JAJ8y+hcgA1wgAJxh9C9GBjhLAPiN0b8wGeAdAeBfRn8IGeCVAGD0J5IBTqfTH6NfAIOZ/sk8/XBuALlsfk6uAtkEIJHRzzsykMlbQHFMfz5jbaRxAwhie/MlV4EoAhDB6OcqMhDCW0DrM/3Zx8pZnhvAymxgbuQqsDY3gGWZ/rRiLa3KDWBBtivNuQosyQ1gNaY//VhdixGApdif9GaNrcRbQIuwLTmMt4OW4QawAtOf41l1CxCA6dmHjGLtzc5bQBOz/RjO20FTcwOYlelPHVbjpARgSvYb1ViTMxKA+dhp1GRlTsdnADOxwSjORwJzcQOYhunPLKzVWQjAHOwo5mLFTsFbQBOwl9r65+/7s//8z7+eD34la/t+/+i9oOLuHh6fRr8GLjH9W/ls7n+kBA1pQGUCUJrp38T20f+WDLSiAWX5DKAu07+JfdP/ln+Rd6zksgSgKHumiRuHuAa0Yj3XJAAV2S1NNBnfGtCKVV2QAJRjnzTRcHBrQCvWdjUCUIsd0kTzka0BrVjhpQhAIfZGE52GtQa0Yp3XIQBV2BXksNqLEIAS7IdWup7TXQIasuYrEIDx7AQyWfnDCcBg9gDJrP+xBGAkq7+tA96i8S5Qc3bBQAIwjHUPL+yFUQRgDCse3rIjhhCAAax1+Mi+OJ4AHM0qh8/YHQcTgENZ33CZPXIkAQAIJQDHcbTp7YDf4eXXhB3ATjmMXwp/kAXW9Nm/Am8gjrXqQ/EL5Y8hAEeYevpf/tan1/90gaEzkYSHogEH8Evhu5t3+u/4rtcKE6ffN+tO+tVVeNm7aUBXPgPgvH1j1E9K6MpDoS03gL5mPP43mRdjT509Rt4CX9GkVwGXgH7cADqKnf4N/5x9mk+6BaZ/wz/nYDPuo1kIQC9W7VgNR/akB+eV2E2dCAC/tD0hDj9vNhncw6f/Yg+FUgSgixkPLD1Gw/Bxc+P4Xmz69/szDzDjnqpPANqzUkvZPcSHT3/esbOa87eAGpt0jXY9FRaZpNu/xule8A5FvsYd/KWghnwnMCleR95ng3XemQj7CEBLkx7/0xj0U/MjIhryGUAz807/3p8KTvqp41geygXz7rVqBAAglAC04UgCR7LjmhCABqxFOJ59dzsBAAglALdyDIFR7L4bCQBAKAG4yRoHkN5/L97fu9/BQ9lojT04igDsZ+VBBXbibgIAEEoAdlrs0NHvDYFl3mo4noey3WL78TACABBKAPZY8rjR41S43knzYB7Kdkvuyt4E4GoLr7O2o2HVQXMwD2W7hfdmJwIAEEoArrP8EaPVCXHtk+bBPJTtlt+hbfmVkNfJWV67f158wpQZxUPZwq+L2c4N4Ao50/+0d2REDZrjeShbRO3TG7kBXCFzYW08daZNmbE8lMtcAjYSgK0yp/9bZ4dO7IgpwkP5jAZsIQBbCQBMRAC28BnAJqY/zMWe3UIAAEIJwNccJWBGdu6XBAAglAB8wSEC5mX/XiYAAKEEACCUAFzi/gizs4svEACAUALwKQcHWIO9/BkBAAglAAChBOA8d0ZYiR19lgAAhBKAMxwWYD329UcCABBKAABCCcB77omwKrv7HQEACCUAAKEE4DduiLA2e/wtAQAIJQAAoQTgF3dDSGCnv/o2+gVwhX/+vv/4D//86/n4VwInC3J+dw+PT6NfQxVlzwVnt9lHNh7HWGBB/nz+MfollCAA/6o5/TfutLcq7zpmt9KC1ICTzwAq27HZdv9b8CULcj1uAP8qdQNosmfKnryYzpIL0g3g5AbwYr3p3/DPIdyqC7LUrh9FAABCCUAtbU9J1c5cTMeCXJsAFNJje9hy7GZBLk8AvBUIoex9Aaii38nImYsdLMgEAgAQSgAAQqUHoMibgL0vxS7dXCVnQRaZAKOkBwAglgAAhBIAgFACABAqOgDhn/8Ap+w5EB0AgGQCUELvH5Ve7UexU5wFGUIAAEIJAECo3ABU++Sn36XYdZsdohZktWlwmNwAAIQTgEJ6nIwKnraYhQW5PAGope32sNm4kQW5NgEACCUA5bQ6JTlt0YQFubC7h8en0a9hjPqf++/+mel2Gj2svSB/Pv8Y/RIGCL0B1J/+p73bZorNxozWXpBTzITmQm8Acz3sjSevWXYas1t1QQZeAgRgJmc33nTbjGUstiAFIMWkAQD6CQxA6GcAAAgAQCgBAAglAAChBAAgVGIA/BUg4KPAyZAYAABOAgAQSwAAQgkAQCgBAAglAAChBAAglAAAhBIAgFACABBKAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEEoAAEIJAEAoAQAIJQAAoQQAIJQAAIQSAIBQAgAQKjEAP59/jH4JQDmBkyExAACcBAAglgAAhBIAgFDfRr8ArvDP3/cf/+Gffz0f/0rgZEHO7+7h8Wn0axjg+/3j6JdwhbPb7CMbj2OsuiAD/xaQAJS2cae9Nd2uYyJrL8jAAPgMoK4dm233vwVfsiDXE3oDONW+BDTZMxOdvCguYUEGHv9PbgAFtToxOXnRhAW5MAEACCUAtbQ9JTlzcSMLcm0CUEiP7WHLsZsFuTwBAAglAFX0Oxk5c7GDBZkgNwCZf+sL+Ch2GuQGACCcAJTQ+1Ls0s1VLMgQAgAQSgAAQkUHIPaTH+BV8hyIDgBAMgEACCUAAKEEoITePyq9+I9ipxoLMkR6AJI//wHCJ0B6AABiCUAV/S7FrtvsYEEmEACAUAJQ6E3AHicjpy12W35B1tn7owhALW23R6nNxowsyLUJAEAoASin1SnJaYsmLMiF3T08Po1+DSV8v38c/RLe2/0z0+00elhsQfoA4OQGUNm+bVNzs7EAC3I9bgD/KngDeLXx5GWncYw1FqQbwEkA3qrcgBdnN17xbcbC5l2Qpv8LAfilfgCAJgTghc8AAEIJwC8OBZDATn8lAAChBAAglAD8xt0Q1maPvyUAAKEEACCUALznhgirsrvfEQCAUAIAEEoAznBPhPXY1x8JAEAoATjPYQFWYkefJQAAoQQAIJQAfMqdEdZgL39GAABCCcAlDg4wO7v4AgEACCUAAKEE4AvujzAv+/cyAQAIJQBfc4iAGdm5XxIAgFDfRr+AOfx8/vH9/nH0qxjsn7/vP/7DP/96Pv6V8MpD+Yzj/xZ3D49Po1/DHGIDcHbEfGToHMlD+ZIAbCEAV0hrwMYp81byxDmGh7KF6b+RzwA4b8eg2f1vsZGHQltuANdJuAQ0mReBp86uPJTtHP+3cwPgN61Oi06dDXkodCIA13G4gMrs0KsIAL+0PSE6bzbhodCPAFxt1SNGj9Fg3NzIQ7nKqnuzHwHYwzqDauzKHQSA06nnqXDh82ZvHgq9CcBOjhtQh/24jwAAhBKA/ZY5dPR+Q8AbDjt4KNstsxOPJwA3sfJgLHvwFgIAEEoAbuUAAqPYfTcSAIBQAtCAYwgcz767nQC0YS3Ckey4JgSA7j8mPuTH0LfloXAAAWjGkQSOYa+18m30C1jKz+cfCb8ybAFnvw3KoXgKpn9DfiVkY/MGoNO3hpaaqhu/xjqvOeGhXEsAGnIDaMwloKarJunLf3nqKbkq078tnwG0N+ka7THviszQfefoCj8tZ+GHssOkO6sybwH1Muk9oOHUqzBomnw5w7+QxR7KPqZ/D24ALKvV3KxwFYAeBKCXSQ8srU6I8540C/JQJt1N9XkLqK9J3wg63XDsLTJlmh/bK3xdsz+UfUz/ftwA+pp37e4bGUUGTY83bSq8ETT1Q9ln3h00BX8NlE+9DI7p/u782jwUGvIW0BHmfSPorVm+e7brUb3a1zvLQ9nH8b83N4AjrPHdYcuMlZUs/FBM/wP4DOAgVjNsZ78cQwCOY00foPdHtRU+Cl6enXIYAQAIJQCHcrSBy+yRIwnA0axv+IzdcTABGMAqh4/si+MJwBjWOrxlRwwhAMNY8fDCXhhFAEay7pvr/Y1RC3/j1Sh2wUACMJjVTzLrfywBGM8eIJOVP5wAlGAnNNTvXRrv/zRkzVcgAFXYD+Sw2osQgELsilZ6HNUd/1uxzusQgFrsjVbazmvTvxUrvBQBKMcOYVXWdjUCUJF90kSrY7vjfxNWdUF+JWRdC/wSsSJ2/xB/o78V078mN4C67JlW9s1x078VK7ksN4Dq3AMa2ngVMPobMv0rE4AJaEBbFzJg9Ldl+hfnLaAJ2EXMyLqtTwDmYC8xFyt2CgIwDTuKWVirs/g2+gVwhZd95SMByjL65+IGMB97jJqszOkIwJTsNKqxJmckALOy36jDapyUzwAm5iMBhjP6p+YGMD07kFGsvdkJwArsQ45n1S3AW0CL8HYQhzH6l+EGsBQ7k96ssZUIwGrsT/qxuhbjLaAFeTuI5oz+JbkBLMuOpRVraVVuACtzFeBGRv/a3ADWZw+zj5WzPDeACK4CXMXoDyEAQWSALxn9UbwFFMcO5zPWRho3gESuArxj9GcSgFwywMnoz+YtoHT2fzJPP5wbAK4CiYx+TgLAKxkIYfTzSgD4jQwszOjnHQHgDBlYjNHPWQLAp2RgAUY/FwgAX5CBSRn9fEkA2OR1mihBceY+2wkA13EhKMvo51oCwB4uBHWY++wmANzEhWAgo58bCQANuBAcydynFQGgJSXox9ynOQGgCyVoxdynHwGgLyXYx9znAALAQZRgC3OfIwkAR3s748TgZOgzjgAwUmwMDH0qEACqeDcTF+uBiU9BAkBRs/fAxKc+AWAOZ+dpkSqY9UxKAJjYhcnbvA2mPOsRANZ0cV7/Z9e/Bav5Y/QLAGAMAQAIJQAAoQQAIJQAAIQSAIBQAgAQSgAAQgkAQCgBAAglAAChBAAglAAAhBIAgFACABBKAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEEoAAEIJAEAoAQAIJQAAoQQAIJQAAIQSAIBQdw+PT6NfA3zqf//nP6Nfwq3+67//b/RLgPPcAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEMo3ghHnwjeX+aYtorgBAIQSAIBQAgAQSgAAQgkAQCgBAAglAAChBAAglAAAhBIAgFACABBKAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEEoAAEIJAEAoAQAIJQAAoQQAIJQAAIQSAIBQAgAQSgAAQgkAQCgBAAglAAChBAAglAAAhBIAgFACABBKAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEEoAAEIJAEAoAQAIJQAAoQQAIJQAAIQSAIBQAgAQ6u7h8Wn0awBgADcAgFACABBKAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEEoAAEIJAEAoAQAIJQAAoQQAIJQAAIQSAIBQAgAQSgAAQgkAQCgBAAglAAChBAAglAAAhBIAgFACABBKAABCCQBAKAEACCUAAKEEACCUAACEEgCAUAIAEEoAAEIJAEAoAQAIJQAAoQQAIJQAAIQSAIBQAgAQ6v8BphNe8FA6j8gAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIlBsYW4gb2YgTGlmZSIsICJzaG9ydF9uYW1lIjogIlBsYW4gb2YgTGlmZSIsICJzdGFydF91cmwiOiAiLi8iLCAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwgImJhY2tncm91bmRfY29sb3IiOiAiIzEwMTgyQSIsICJ0aGVtZV9jb2xvciI6ICIjMTAxODJBIiwgImxhbmciOiAiZW4iLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFnQUFBQUlBQ0FJQUFBQjdHa090QUFBUmJFbEVRVlI0bk8zZE1WWmtPWnFHNGFCT0dubXdNTEhiWkNOajFtYkdMcVBzMlV5WnM1bXhjd1djTk1lZ0RrbENFTnk0SVYzOTB2YzhablZYZHRCWCtsOHBJb0c3aDhlbkV3QjUvaGo5QWdBWVF3QUFRZ2tBUUNnQkFBZ2xBQUNoQkFBZ2xBQUFoQklBZ0ZBQ0FCQktBQUJDQ1FCQUtBRUFDQ1VBQUtFRUFDQ1VBQUNFRWdDQVVBSUFFRW9BQUVJSkFFQW9BUUFJSlFBQW9RUUFJSlFBQUlRU0FJQlFBZ0FRNnR2b0Z3QmRmTDkvYlBzSC9ueiswZllQaE9FRWdJazFuL0w3L3JlMGdVa0pBSE00Y3RaZjYreHJVd1hxRXdDS3Fqenh0M2ozK3ZXQWdnU0FLbWFmK0pmcEFRVUpBQ090UGZRdmVQdUZpd0dqQ0FCSGl4MzZueEVEUmhFQURtTHViL0g2LzVJU2NBQUJvQzl6Zng4bDRBQUNRQmZtZml0S1FEOENRRXZtZmo5S1FITUNRQVBtL3BHVWdGWUVnSnNZL1FPOS9KOHZBK3dtQU94aDd0ZmhRc0J1QXNCMWpQNnlYQWk0bGdDd2liay9DeGNDdGhNQXZtRDBUOHFGZ0M4SkFKOHkraGNnQTF3Z0FKeGg5QzlHQmpoTEFQaU4wYjh3R2VBZEFlQmZSbjhJR2VDVkFHRDBKNUlCVHFmVEg2TmZBSU9aL3NrOC9YQnVBTGxzZms2dUF0a0VJSkhSenpzeWtNbGJRSEZNZno1amJhUnhBd2hpZS9NbFY0RW9BaERCNk9jcU1oRENXMERyTS8zWng4cFpuaHZBeW14Z2J1UXFzRFkzZ0dXWi9yUmlMYTNLRFdCQnRpdk51UW9zeVExZ05hWS8vVmhkaXhHQXBkaWY5R2FOcmNSYlFJdXdMVG1NdDRPVzRRYXdBdE9mNDFsMUN4Q0E2ZG1IakdMdHpjNWJRQk96L1JqTzIwRlRjd09ZbGVsUEhWYmpwQVJnU3ZZYjFWaVRNeEtBK2RocDFHUmxUc2RuQURPeHdTak9Sd0p6Y1FPWWh1blBMS3pWV1FqQUhPd281bUxGVHNGYlFCT3dsOXI2NSsvN3MvLzh6NytlRDM0bGEvdCsvK2k5b09MdUhoNmZScjhHTGpIOVcvbHM3bitrQkExcFFHVUNVSnJwMzhUMjBmK1dETFNpQVdYNURLQXUwNytKZmRQL2xuK1JkNnprc2dTZ0tIdW1pUnVIdUFhMFlqM1hKQUFWMlMxTk5CbmZHdENLVlYyUUFKUmpuelRSY0hCclFDdldkalVDVUlzZDBrVHprYTBCclZqaHBRaEFJZlpHRTUyR3RRYTBZcDNYSVFCVjJCWGtzTnFMRUlBUzdJZFd1cDdUWFFJYXN1WXJFSUR4N0FReVdmbkRDY0JnOWdESnJQK3hCR0FrcTcrdEE5Nmk4UzVRYzNiQlFBSXdqSFVQTCt5RlVRUmdEQ3NlM3JJamhoQ0FBYXgxK01pK09KNEFITTBxaDgvWUhRY1RnRU5aMzNDWlBYSWtBUUFJSlFESGNiVHA3WURmNGVYWGhCM0FUam1NWHdwL2tBWFc5Tm0vQW04Z2pyWHFRL0VMNVk4aEFFZVlldnBmL3RhbjEvOTBnYUV6a1lTSG9nRUg4RXZodTV0Myt1LzRydGNLRTZmZk4rdE8rdFZWZU5tN2FVQlhQZ1BndkgxajFFOUs2TXBEb1MwM2dMNW1QUDQzbVJkalQ1MDlSdDRDWDlHa1Z3R1hnSDdjQURxS25mNE4vNXg5bWsrNkJhWi93ei9uWURQdW8xa0lRQzlXN1ZnTlIvYWtCK2VWMkUyZENBQy90RDBoRGo5dk5obmN3NmYvWWcrRlVnU2dpeGtQTEQxR3cvQnhjK1A0WG16Njkvc3pEekRqbnFwUEFOcXpVa3ZaUGNTSFQzL2VzYk9hODdlQUdwdDBqWFk5RlJhWnBOdS94dWxlOEE1RnZzWWQvS1dnaG53bk1DbGVSOTVuZzNYZW1RajdDRUJMa3g3LzB4ajBVL01qSWhyeUdVQXo4MDcvM3A4S1R2cXA0MWdleWdYejdyVnFCQUFnbEFDMDRVZ0NSN0xqbWhDQUJxeEZPSjU5ZHpzQkFBZ2xBTGR5RElGUjdMNGJDUUJBS0FHNHlSb0hrTjUvTDk3ZnU5L0JROWxvalQwNGlnRHNaK1ZCQlhiaWJnSUFFRW9BZGxyczBOSHZEWUZsM21vNG5vZXkzV0w3OFRBQ0FCQktBUFpZOHJqUjQxUzQza256WUI3S2RrdnV5dDRFNEdvTHI3TzJvMkhWUVhNd0QyVzdoZmRtSndJQUVFb0FyclA4RWFQVkNYSHRrK2JCUEpUdGx0K2hiZm1Wa05mSldWNjdmMTU4d3BRWnhVUFp3cStMMmM0TjRBbzUwLyswZDJSRURacmplU2hiUk8zVEc3a0JYQ0Z6WVcwOGRhWk5tYkU4bE10Y0FqWVNnSzB5cC85Ylo0ZE83SWdwd2tQNWpBWnNJUUJiQ1FCTVJBQzI4Qm5BSnFZL3pNV2UzVUlBQUVJSndOY2NKV0JHZHU2WEJBQWdsQUI4d1NFQzVtWC9YaVlBQUtFRUFDQ1VBRnppL2dpenM0c3ZFQUNBVUFMd0tRY0hXSU85L0JrQkFBZ2xBQUNoQk9BOGQwWllpUjE5bGdBQWhCS0FNeHdXWUQzMjlVY0NBQkJLQUFCQ0NjQjc3b213S3J2N0hRRUFDQ1VBQUtFRTREZHVpTEEyZS93dEFRQUlKUUFBb1FUZ0YzZERTR0Nudi9vMitnVndoWC8rdnYvNEQvLzg2L240VndJbkMzSitkdytQVDZOZlF4Vmx6d1ZudDlsSE5oN0hXR0JCL256K01mb2xsQ0FBLzZvNS9UZnV0TGNxN3pwbXQ5S0MxSUNUendBcTI3SFpkdjliOENVTGNqMXVBUDhxZFFOb3NtZktucnlZenBJTDBnM2c1QWJ3WXIzcDMvRFBJZHlxQzdMVXJoOUZBQUJDQ1VBdGJVOUoxYzVjVE1lQ1hKc0FGTkpqZTloeTdHWkJMazhBdkJVSW9leDlBYWlpMzhuSW1Zc2RMTWdFQWdBUVNnQUFRcVVIb01pYmdMMHZ4UzdkWENWblFSYVpBS09rQndBZ2xnQUFoQklBZ0ZBQ0FCQXFPZ0Robi84QXArdzVFQjBBZ0dRQ1VFTHZINVZlN1VleFU1d0ZHVUlBQUVJSkFFQ28zQUJVKytTbjM2WFlkWnNkb2haa3RXbHdtTndBQUlRVGdFSjZuSXdLbnJhWWhRVzVQQUdvcGUzMnNObTRrUVc1TmdFQUNDVUE1YlE2SlRsdDBZUUZ1YkM3aDhlbjBhOWhqUHFmKysvK21lbDJHajJzdlNCL1B2OFkvUklHQ0wwQjFKLytwNzNiWm9yTnhveldYcEJUeklUbVFtOEFjejNzalNldldYWWFzMXQxUVFaZUFnUmdKbWMzM25UYmpHVXN0aUFGSU1Xa0FRRDZDUXhBNkdjQUFBZ0FRQ2dCQUFnbEFBQ2hCQUFnVkdJQS9CVWc0S1BBeVpBWUFBQk9BZ0FRU3dBQVFna0FRQ2dCQUFnbEFBQ2hCQUFnbEFBQWhCSUFnRkFDQUJCS0FBQkNDUUJBS0FFQUNDVUFBS0VFQUNDVUFBQ0VFZ0NBVUFJQUVFb0FBRUlKQUVBb0FRQUlKUUFBb1FRQUlKUUFBSVFTQUlCUUFnQVFLakVBUDU5L2pINEpRRG1Ca3lFeEFBQ2NCQUFnbGdBQWhCSUFnRkRmUnI4QXJ2RFAzL2NmLytHZmZ6MGYvMHJnWkVITzcrN2g4V24wYXhqZysvM2o2SmR3aGJQYjdDTWJqMk9zdWlBRC94YVFBSlMyY2FlOU5kMnVZeUpyTDhqQUFQZ01vSzRkbTIzM3Z3VmZzaURYRTNvRE9OVytCRFRaTXhPZHZDZ3VZVUVHSHY5UGJnQUZ0VG94T1huUmhBVzVNQUVBQ0NVQXRiUTlKVGx6Y1NNTGNtMENVRWlQN1dITHNac0Z1VHdCQUFnbEFGWDBPeGs1YzdHREJaa2dOd0NaZitzTCtDaDJHdVFHQUNDY0FKVFErMUxzMHMxVkxNZ1FBZ0FRU2dBQVFrVUhJUGFUSCtCVjhoeUlEZ0JBTWdFQUNDVUFBS0VFb0lUZVB5cTkrSTlpcHhvTE1rUjZBSkkvL3dIQ0owQjZBQUJpQ1VBVi9TN0ZydHZzWUVFbUVBQ0FVQUpRNkUzQUhpY2pweTEyVzM1QjF0bjdvd2hBTFcyM1I2bk54b3dzeUxVSkFFQW9BU2luMVNuSmFZc21MTWlGM1QwOFBvMStEU1Y4djM4Yy9STGUyLzB6MCswMGVsaHNRZm9BNE9RR1VObStiVk56czdFQUMzSTliZ0QvS25nRGVMWHg1R1duY1l3MUZxUWJ3RWtBM3FyY2dCZG5OMTd4YmNiQzVsMlFwdjhMQWZpbGZnQ0FKZ1RnaGM4QUFFSUp3QzhPQlpEQVRuOGxBQUNoQkFBZ2xBRDh4dDBRMW1hUHZ5VUFBS0VFQUNDVUFMem5oZ2lyc3J2ZkVRQ0FVQUlBRUVvQXpuQlBoUFhZMXg4SkFFQW9BVGpQWVFGV1lrZWZKUUFBb1FRQUlKUUFmTXFkRWRaZ0wzOUdBQUJDQ2NBbERnNHdPN3Y0QWdFQUNDVUFBS0VFNEF2dWp6QXYrL2N5QVFBSUpRQmZjNGlBR2RtNVh4SUFnRkRmUnIrQU9meDgvdkg5L25IMHF4anNuNy92UC83RFAvOTZQdjZWOE1wRCtZemoveFozRDQ5UG8xL0RIR0lEY0hiRWZHVG9ITWxEK1pJQWJDRUFWMGhyd01ZcDgxYnl4RG1HaDdLRjZiK1J6d0E0YjhlZzJmMXZzWkdIUWx0dUFOZEp1QVEwbVJlQnA4NnVQSlR0SFArM2N3UGdONjFPaTA2ZERYa29kQ0lBMTNHNGdNcnMwS3NJQUwrMFBTRTZiemJob2RDUEFGeHQxU05HajlGZzNOeklRN25LcW51ekh3SFl3enFEYXV6S0hRU0EwNm5ucVhEaDgyWnZIZ3E5Q2NCT2podFFoLzI0andBQWhCS0EvWlk1ZFBSK1E4QWJEanQ0S05zdHN4T1BKd0Ezc2ZKZ0xIdndGZ0lBRUVvQWJ1VUFBcVBZZlRjU0FJQlFBdENBWXdnY3o3NjduUUMwWVMzQ2tleTRKZ1NBN2o4bVB1VEgwTGZsb1hBQUFXakdrUVNPWWErMThtMzBDMWpLeitjZkNiOHliQUZudnczS29YZ0twbjlEZmlWa1kvTUdvTk8zaHBhYXFodS94anF2T2VHaFhFc0FHbklEYU13bG9LYXJKdW5MZjNucUtia3EwNzh0bndHME4ra2E3VEh2aXN6UWZlZm9Dajh0WitHSHNzT2tPNnN5YndIMU11azlvT0hVcXpCb21udzV3NytReFI3S1BxWi9EMjRBTEt2VjNLeHdGWUFlQktDWFNROHNyVTZJODU0MEMvSlFKdDFOOVhrTHFLOUozd2c2M1hEc0xUSmxtaC9iSzN4ZHN6K1VmVXovZnR3QStwcDM3ZTRiR1VVR1RZODNiU3E4RVRUMVE5bG4zaDAwQlg4TmxFKzlESTdwL3U3ODJqd1VHdklXMEJIbWZTUG9yVm0rZTdiclViM2ExenZMUTluSDhiODNONEFqclBIZFljdU1sWlVzL0ZCTS93UDRET0FnVmpOc1o3OGNRd0NPWTAwZm9QZEh0UlUrQ2w2ZW5YSVlBUUFJSlFDSGNyU0J5K3lSSXduQTBheHYrSXpkY1RBQkdNQXFoNC9zaStNSndCaldPcnhsUnd3aEFNTlk4ZkRDWGhoRkFFYXk3cHZyL1kxUkMzL2oxU2gyd1VBQ01KalZUekxyZnl3QkdNOGVJSk9WUDV3QWxHQW5OTlR2WFJydi96Umt6VmNnQUZYWUQrU3cyb3NRZ0VMc2lsWjZITlVkLzF1eHp1c1FnRnJzalZiYXptdlR2eFVydkJRQktNY09ZVlhXZGpVQ1VKRjkwa1NyWTd2amZ4TldkVUYrSldSZEMvd1NzU0oyL3hCL283OFYwNzhtTjRDNjdKbFc5czF4MDc4Vks3a3NONERxM0FNYTJuZ1ZNUG9iTXYwckU0QUphRUJiRnpKZzlMZGwraGZuTGFBSjJFWE15THF0VHdEbVlDOHhGeXQyQ2dJd0RUdUtXVmlycy9nMitnVndoWmQ5NVNNQnlqTDY1K0lHTUI5N2pKcXN6T2tJd0pUc05LcXhKbWNrQUxPeTM2akRhcHlVendBbTVpTUJoalA2cCtZR01EMDdrRkdzdmRrSndBcnNRNDVuMVMzQVcwQ0w4SFlRaHpINmwrRUdzQlE3azk2c3NaVUl3R3JzVC9xeHVoYmpMYUFGZVR1STVveitKYmtCTE11T3BSVnJhVlZ1QUN0ekZlQkdSdi9hM0FEV1p3K3pqNVd6UERlQUNLNENYTVhvRHlFQVFXU0FMeG45VWJ3RkZNY081elBXUmhvM2dFU3VBcnhqOUdjU2dGd3l3TW5veitZdG9IVDJmekpQUDV3YkFLNENpWXgrVGdMQUt4a0lZZlR6U2dENGpRd3N6T2puSFFIZ0RCbFlqTkhQV1FMQXAyUmdBVVkvRndnQVg1Q0JTUm45ZkVrQTJPUjFtaWhCY2VZKzJ3a0ExM0VoS012bzUxb0N3QjR1QkhXWSsrd21BTnpFaFdBZ281OGJDUUFOdUJBY3lkeW5GUUdnSlNYb3g5eW5PUUdnQ3lWb3hkeW5Id0dnTHlYWXg5em5BQUxBUVpSZ0MzT2ZJd2tBUjNzNzQ4VGdaT2d6amdBd1Vtd01ESDBxRUFDcWVEY1RGK3VCaVU5QkFrQlJzL2ZBeEtjK0FXQU9aK2Rwa1NxWTlVeEtBSmpZaGNuYnZBMm1QT3NSQU5aMGNWNy9aOWUvQmF2NVkvUUxBR0FNQVFBSUpRQUFvUVFBSUpRQUFJUVNBSUJRQWdBUVNnQUFRZ2tBUUNnQkFBZ2xBQUNoQkFBZ2xBQUFoQklBZ0ZBQ0FCQktBQUJDQ1FCQUtBRUFDQ1VBQUtFRUFDQ1VBQUNFRWdDQVVBSUFFRW9BQUVJSkFFQW9BUUFJSlFBQW9RUUFJSlFBQUlRU0FJQlFkdytQVDZOZkEzenFmLy9uUDZOZndxMys2Ny8vYi9STGdQUGNBQUJDQ1FCQUtBRUFDQ1VBQUtFRUFDQ1VBQUNFRWdDQVVBSUFFTW8zZ2hIbndqZVgrYVl0b3JnQkFJUVNBSUJRQWdBUVNnQUFRZ2tBUUNnQkFBZ2xBQUNoQkFBZ2xBQUFoQklBZ0ZBQ0FCQktBQUJDQ1FCQUtBRUFDQ1VBQUtFRUFDQ1VBQUNFRWdDQVVBSUFFRW9BQUVJSkFFQW9BUUFJSlFBQW9RUUFJSlFBQUlRU0FJQlFBZ0FRU2dBQVFna0FRQ2dCQUFnbEFBQ2hCQUFnbEFBQWhCSUFnRkFDQUJCS0FBQkNDUUJBS0FFQUNDVUFBS0VFQUNDVUFBQ0VFZ0NBVUFJQUVFb0FBRUlKQUVBb0FRQUlKUUFBb1FRQUlKUUFBSVFTQUlCUUFnQVE2dTdoOFduMGF3QmdBRGNBZ0ZBQ0FCQktBQUJDQ1FCQUtBRUFDQ1VBQUtFRUFDQ1VBQUNFRWdDQVVBSUFFRW9BQUVJSkFFQW9BUUFJSlFBQW9RUUFJSlFBQUlRU0FJQlFBZ0FRU2dBQVFna0FRQ2dCQUFnbEFBQ2hCQUFnbEFBQWhCSUFnRkFDQUJCS0FBQkNDUUJBS0FFQUNDVUFBS0VFQUNDVUFBQ0VFZ0NBVUFJQUVFb0FBRUlKQUVBb0FRQUlKUUFBb1FRQUlKUUFBSVFTQUlCUUFnQVE2djhCcGhOZThGQTZqOGdBQUFBQVNVVk9SSzVDWUlJPSIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInB1cnBvc2UiOiAiYW55In1dfQ==">
+<meta name="theme-color" content="#10182A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Plan of Life">
+<title>Plan of Life — Norms and Rosary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Crimson+Pro:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#10182A;
+    --panel:#1B2540;
+    --panel-2:#212C4C;
+    --ink:#EDE6D6;
+    --ink-dim:#B9B2A0;
+    --gold:#C9A44C;
+    --gold-dim:rgba(201,164,76,0.28);
+    --sage:#8A9B7B;
+    --wine:#8A4A4A;
+    --muted:#7A83A0;
+    --line:rgba(237,230,214,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(1200px 800px at 50% -10%, #182242 0%, #10182A 60%), var(--bg);
+    color:var(--ink);
+    font-family:'Crimson Pro', serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:28px 14px 60px;
+  }
+  .app{width:100%;max-width:460px;}
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:30px;
+    text-align:center;
+    margin:0 0 2px;
+    letter-spacing:0.01em;
+  }
+  .date-line{
+    text-align:center;
+    color:var(--ink-dim);
+    font-size:15px;
+    margin-bottom:22px;
+  }
+
+  /* Rosary ring */
+  .ring-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:8px;}
+  svg.ring{width:220px;height:250px;}
+  .bead{cursor:pointer;transition:transform .15s ease;}
+  .bead:hover{transform:scale(1.12);}
+  .bead-circle{stroke:var(--gold-dim);stroke-width:1.5;fill:var(--panel-2);transition:fill .25s ease, stroke .25s ease;}
+  .bead-circle.done{fill:var(--gold);stroke:var(--gold);}
+  .ring-center-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:26px;
+    fill:var(--ink);
+  }
+  .ring-center-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:9px;
+    letter-spacing:0.12em;
+    fill:var(--muted);
+    text-transform:uppercase;
+  }
+  .cross-line{stroke:var(--gold-dim);stroke-width:2;}
+  .cross-arm{stroke:var(--gold-dim);stroke-width:2;stroke-linecap:round;}
+
+  .streak-row{
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--sage);
+    margin:6px 0 26px;
+    letter-spacing:0.02em;
+  }
+  .streak-row b{color:var(--gold);font-weight:500;}
+
+  .section{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 16px 10px;
+    margin-bottom:16px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .section-sub{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .edit-toggle{
+    background:none;border:none;color:var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;cursor:pointer;padding:4px 2px;
+    text-decoration:underline;text-underline-offset:3px;
+  }
+  .edit-toggle:hover{color:var(--gold);}
+
+  .item-row{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item-row:last-child{border-bottom:none;}
+  .chk, .myst-box{
+    width:20px;height:20px;flex:0 0 20px;
+    border-radius:6px;
+    border:1.5px solid var(--gold-dim);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    background:var(--panel-2);
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .chk.done, .myst-box.done{background:var(--gold);border-color:var(--gold);}
+  .chk.done::after, .myst-box.done::after{content:"✓";color:#10182A;font-size:13px;font-weight:700;}
+  .item-label{flex:1;font-size:15.5px;line-height:1.3;}
+  .item-label.done{color:var(--ink-dim);text-decoration:line-through;text-decoration-color:var(--gold-dim);}
+  .item-remove{
+    background:none;border:none;color:var(--wine);
+    font-size:16px;cursor:pointer;padding:2px 6px;
+    display:none;
+  }
+  .section.editing .item-remove{display:block;}
+
+  .add-row{display:flex;gap:8px;margin:10px 0 6px;display:none;}
+  .section.editing .add-row{display:flex;}
+  .add-row input{
+    flex:1;background:var(--panel-2);border:1px solid var(--line);
+    border-radius:8px;padding:8px 10px;color:var(--ink);
+    font-family:'Crimson Pro', serif;font-size:14.5px;
+  }
+  .add-row input:focus{outline:1px solid var(--gold-dim);}
+  .add-row button{
+    background:var(--gold);border:none;border-radius:8px;
+    padding:0 14px;color:#10182A;font-weight:600;cursor:pointer;
+    font-family:'JetBrains Mono', monospace;font-size:12px;
+  }
+
+  .next-ex{
+    font-size:14.5px;color:var(--ink-dim);
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  }
+  .next-ex input{
+    background:var(--panel-2);border:1px solid var(--line);
+    border-radius:8px;padding:6px 9px;color:var(--ink);
+    font-family:'JetBrains Mono', monospace;font-size:13px;
+  }
+
+  .history{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+    margin-top:4px;
+  }
+  .h-cell{
+    aspect-ratio:1;
+    border-radius:4px;
+    background:var(--panel-2);
+  }
+  .h-legend{
+    display:flex;justify-content:space-between;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;color:var(--muted);
+    margin-top:8px;
+  }
+
+  .reset-link{
+    text-align:center;margin-top:26px;
+  }
+  .reset-link button{
+    background:none;border:none;color:var(--muted);
+    font-family:'JetBrains Mono', monospace;font-size:11px;
+    text-decoration:underline;text-underline-offset:3px;cursor:pointer;
+  }
+  .reset-link button:hover{color:var(--wine);}
+
+  .loading{text-align:center;color:var(--muted);font-family:'JetBrains Mono', monospace;font-size:12px;padding:40px 0;}
+  .err{color:var(--wine);font-family:'JetBrains Mono', monospace;font-size:11px;text-align:center;margin-top:8px;}
+
+  .rem-switch{position:relative;display:inline-block;width:38px;height:22px;flex:0 0 38px;}
+  .rem-switch input{opacity:0;width:0;height:0;}
+  .rem-switch span{
+    position:absolute;cursor:pointer;inset:0;
+    background:var(--panel-2);border:1px solid var(--line);
+    border-radius:22px;transition:background .2s ease;
+  }
+  .rem-switch span::before{
+    content:"";position:absolute;height:16px;width:16px;left:2px;top:2px;
+    background:var(--ink-dim);border-radius:50%;transition:transform .2s ease, background .2s ease;
+  }
+  .rem-switch input:checked + span{background:var(--gold-dim);border-color:var(--gold);}
+  .rem-switch input:checked + span::before{transform:translateX(16px);background:var(--gold);}
+
+  .rem-times{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+  .rem-time-row{display:flex;align-items:center;gap:8px;}
+  .rem-time-input{
+    background:var(--panel-2);border:1px solid var(--line);
+    border-radius:8px;padding:6px 9px;color:var(--ink);
+    font-family:'JetBrains Mono', monospace;font-size:13px;
+  }
+  .rem-time-remove{display:inline-block !important;}
+  .rem-note{
+    font-family:'JetBrains Mono', monospace;font-size:10.5px;
+    color:var(--muted);line-height:1.5;margin-top:6px;
+  }
+
+  .toast{
+    position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);
+    background:var(--gold);color:#10182A;
+    font-family:'Crimson Pro', serif;font-size:14.5px;font-weight:600;
+    padding:12px 18px;border-radius:12px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.35);
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease;
+    max-width:320px;text-align:center;z-index:50;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  .guide-btn{
+    background:none;border:1px solid var(--gold-dim);
+    color:var(--gold);border-radius:50%;
+    width:22px;height:22px;flex:0 0 22px;
+    font-family:'Cormorant Garamond', serif;font-size:14px;font-style:italic;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    line-height:1;
+  }
+  .guide-btn:hover{background:var(--gold-dim);}
+
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(8,12,24,0.72);
+    display:none;align-items:flex-end;justify-content:center;
+    z-index:100;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal-panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px 18px 0 0;
+    padding:22px 20px 26px;
+    width:100%;max-width:460px;
+    max-height:78vh;overflow-y:auto;
+  }
+  @media (min-width:520px){
+    .modal-overlay{align-items:center;}
+    .modal-panel{border-radius:18px;}
+  }
+  .modal-title{
+    font-family:'Cormorant Garamond', serif;font-weight:600;font-size:21px;
+    margin:0 0 10px;color:var(--gold);
+  }
+  .modal-text{
+    font-size:15.5px;line-height:1.55;color:var(--ink);
+    white-space:pre-line;margin-bottom:16px;
+  }
+  .modal-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .modal-link{
+    background:var(--gold);color:#10182A;border:none;border-radius:9px;
+    padding:9px 16px;font-family:'JetBrains Mono', monospace;font-size:12px;
+    font-weight:600;cursor:pointer;text-decoration:none;
+  }
+  .modal-close{
+    background:none;border:1px solid var(--line);color:var(--ink-dim);
+    border-radius:9px;padding:9px 16px;font-family:'JetBrains Mono', monospace;
+    font-size:12px;cursor:pointer;
+  }
+
+  .rosary-btn{
+    background:none;border:1px solid var(--gold-dim);color:var(--gold);
+    border-radius:8px;width:28px;height:28px;flex:0 0 28px;
+    font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  }
+  .rosary-btn:hover{background:var(--gold-dim);}
+
+  .rosary-panel{max-height:84vh;}
+  .rosary-set-name{
+    font-family:'JetBrains Mono', monospace;font-size:11px;color:var(--sage);
+    text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;
+  }
+  .mode-toggle{display:flex;gap:8px;margin-bottom:16px;}
+  .mode-btn{
+    flex:1;background:var(--panel-2);border:1px solid var(--line);
+    color:var(--ink-dim);border-radius:9px;padding:9px 6px;
+    font-family:'JetBrains Mono', monospace;font-size:11px;cursor:pointer;text-align:center;
+  }
+  .mode-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+
+  .prayer-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .prayer-btn{
+    flex:1;min-width:100px;background:var(--panel-2);border:1px solid var(--line);
+    color:var(--ink);border-radius:9px;padding:8px 6px;
+    font-family:'Crimson Pro', serif;font-size:13px;cursor:pointer;text-align:center;
+  }
+  .prayer-btn:hover{border-color:var(--gold-dim);}
+
+  .mystery-card{
+    background:var(--panel-2);border:1px solid var(--line);border-radius:12px;
+    padding:12px 14px;margin-bottom:10px;
+  }
+  .mystery-card.done{border-color:var(--gold);}
+  .mystery-head{display:flex;align-items:center;gap:10px;}
+  .mystery-num{
+    font-family:'JetBrains Mono', monospace;font-size:11px;color:var(--muted);
+    width:24px;flex:0 0 24px;
+  }
+  .mystery-title{flex:1;font-size:15.5px;font-weight:600;color:var(--ink);}
+  .mystery-title.done{color:var(--gold);}
+  .mystery-text{font-size:14px;color:var(--ink-dim);line-height:1.5;margin:8px 0;}
+  .mystery-actions{display:flex;gap:8px;align-items:center;}
+  .mystery-time{
+    background:var(--panel);border:1px solid var(--line);border-radius:8px;
+    padding:5px 8px;color:var(--ink);font-family:'JetBrains Mono', monospace;font-size:12.5px;
+  }
+  .listen-btn{
+    background:none;border:1px solid var(--gold-dim);color:var(--gold);
+    border-radius:8px;padding:6px 10px;font-family:'JetBrains Mono', monospace;
+    font-size:11px;cursor:pointer;
+  }
+  .rosary-progress{
+    font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--sage);
+    text-align:center;margin-bottom:14px;
+  }
+  .rem-toggle-row{
+    display:flex;align-items:center;justify-content:space-between;
+    margin:14px 0;padding-top:12px;border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="loading" id="loading">loading your plan of life…</div>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-text" id="modal-text"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="rosary-overlay">
+  <div class="modal-panel rosary-panel" id="rosary-panel-content"></div>
+</div>
+
+<script>
+const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+const DEFAULT_CONFIG = {
+  daily: [
+    {id:'d1', label:'Morning offering on waking', guide:{text:'On waking, offer God the work, joys and setbacks of the day, uniting it to the Holy Mass celebrated throughout the world. St. Josemaría recommended pairing it with the "heroic minute": getting up without delay when the alarm rings, as the first small victory of the day.', links:[
+      {label:'The Heroic Minute ↗', url:'https://opusdei.org/en/article/offering-pleasing-to-god-morning-offering-serviam/'},
+      {label:'The Preces of Opus Dei ↗', url:'https://opusdei.org/en/article/the-prayers-preces-of-opus-dei/'}
+    ]}},
+    {id:'d2', label:'Mental prayer (first period)', guide:{text:'Spend a period of time, alone and in silence, talking with God as with a friend: you can start from a Gospel passage or a spiritual text.', url:'https://opusdei.org/en-us/article/topic-35-prayer-in-christian-life/'}},
+    {id:'d3', label:'Mental prayer (second period)', guide:{text:'A second period of mental prayer, usually in the afternoon or evening; the same spirit as the first: listening and responding to God with simplicity.', url:'https://opusdei.org/en-us/article/topic-35-prayer-in-christian-life/'}},
+    {id:'d4', label:'Holy Mass and Communion', guide:{text:'Take part in Holy Mass and, if possible, receive Communion: it is the center of Christian life. To find the nearest church and Mass schedule, try these options (they ask permission to use your location; if one doesn\'t find you well, try another):', links:[
+      {label:'Google Maps (near me) ↗', url:'https://www.google.com/maps/search/?api=1&query=catholic+church+near+me'},
+      {label:'Mass Times (global) ↗', url:'https://masstimes.org'}
+    ]}},
+    {id:'d5', label:'Spiritual reading', guide:{text:'Read about 15 minutes of a spiritual book that helps you know God better and grow in virtue.', url:'https://escriva.org'}},
+    {id:'d6', label:'Gospel / New Testament reading', guide:{text:'Slowly read a short Gospel passage, pausing on a phrase or scene that speaks to you today.', url:'https://bible.usccb.org/readings'}},
+    {id:'d7', label:'Holy Rosary', guide:{text:'Pray the five decades of the mystery for the day, meditating on scenes from the life of Jesus and Mary.', url:'https://opusdei.org/en-us/article/how-to-pray-the-rosary/'}},
+    {id:'d8', label:'Particular examination of conscience (midday)', guide:{text:'A brief look, at midday, at how you are fighting for one specific point: a virtue you want to grow in, or a fault you want to overcome.', url:'https://opusdei.org/en-ng/article/examination-of-conscience-for-confession-adults/'}},
+    {id:'d9', label:'General examination of conscience (night)', guide:{text:'Before going to sleep, look back over the whole day: what you would thank God for, what you would ask forgiveness for, what to improve tomorrow.', url:'https://opusdei.org/en-ng/article/examination-of-conscience-for-confession-adults/'}},
+    {id:'d10', label:'Visit to the Blessed Sacrament', guide:{text:'A brief visit to a church or chapel to greet Jesus in the Tabernacle, even on the way somewhere else. It doesn\'t need to be during Mass — just a church that is open:', links:[
+      {label:'Google Maps (near me) ↗', url:'https://www.google.com/maps/search/?api=1&query=catholic+church+near+me'},
+      {label:'Mass Times (global) ↗', url:'https://masstimes.org'}
+    ]}},
+    {id:'d11', label:'Angelus / Regina Caeli', guide:{text:'At midday, the Angelus recalls the Incarnation of the Son of God (during Eastertide, the Regina Caeli is prayed instead):\n\nV. The Angel of the Lord declared unto Mary.\nR. And she conceived of the Holy Spirit.\nHail Mary…\n\nV. Behold the handmaid of the Lord.\nR. Be it done unto me according to Thy word.\nHail Mary…\n\nV. And the Word was made flesh.\nR. And dwelt among us.\nHail Mary…\n\nV. Pray for us, O holy Mother of God.\nR. That we may be made worthy of the promises of Christ.\n\nLet us pray: Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His passion and cross be brought to the glory of His resurrection. Through the same Christ Our Lord. Amen.', url:''}},
+    {id:'d12', label:'Preces', guide:{text:'The Preces are the daily prayer proper to the faithful of Opus Dei: they praise, give thanks and ask for the Pope, the Church, the Work and its needs. Composed by St. Josemaría; you can read and download it (in Latin, or Latin with an English translation) on the official page.', url:'https://opusdei.org/en/article/the-prayers-preces-of-opus-dei/'}}
+  ],
+  weekly: [
+    {id:'w1', label:'Frequent confession', guide:{text:'Go to sacramental confession with the frequency you have agreed with your spiritual director (usually weekly or every two weeks). This official Opus Dei guide explains the steps to prepare well, including examinations of conscience.', url:'https://opusdei.org/en-ke/article/confession-a-step-by-step-guide/'}},
+    {id:'w2', label:'Circle / formation class', guide:{text:'Attend the weekly formation class (circle), where a point of interior life or doctrine is studied in depth.', url:''}},
+    {id:'w3', label:'Spiritual direction', guide:{text:'The fraternal chat — also called Confidence — is the spiritual-direction conversation proper to the faithful of Opus Dei: speaking simply and trustingly about one\'s own interior life, struggles and joys.', url:'https://opusdei.org/en-ng/article/spiritual-accompaniment-2/'}}
+  ],
+  reminders: {enabled:false, times:['07:30','13:00','18:30','21:30'], permissionAsked:false},
+  rosary: {mode:'session', times:['07:00','11:00','14:00','17:00','20:00'], remindersEnabled:false, permissionAsked:false},
+  monthly: [
+    {id:'m1', label:'Day of recollection', guide:{text:'A day (or part of one) devoted to unhurried prayer, in an atmosphere of recollection, to review the direction of your interior life.', url:''}},
+    {id:'m2', label:'Extended monthly chat', guide:{text:'A longer spiritual-direction conversation, with time to review the whole month: plan of life, work, family, apostolate.', url:''}}
+  ],
+  nextExercises: ''
+};
+
+const PRAYERS = {
+  ourfather: 'Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.',
+  hailmary: 'Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.',
+  glorybe: 'Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.'
+};
+
+const MYSTERY_SETS = {
+  joyful: {
+    name:'Joyful Mysteries', days:[1,6],
+    list:[
+      {title:'The Annunciation', text:'The angel Gabriel announces to Mary that she will be the Mother of God, and she answers with her humble, trusting yes.'},
+      {title:'The Visitation', text:'Mary visits her cousin Elizabeth and puts herself at her service, bringing Jesus with her into that home.'},
+      {title:'The Nativity', text:'God becomes a child in Bethlehem, poor and humble, to draw close to each one of us.'},
+      {title:'The Presentation in the Temple', text:'Mary and Joseph offer Jesus to God, fulfilling the Law with obedience and trust.'},
+      {title:'The Finding in the Temple', text:'Jesus, at twelve years old, is found teaching in the Temple, after his parents searched for him in anguish and found him with joy.'}
+    ]
+  },
+  sorrowful: {
+    name:'Sorrowful Mysteries', days:[2,5],
+    list:[
+      {title:'The Agony in the Garden', text:'Jesus accepts the Father\'s will and gives himself out of love, in the midst of anguish.'},
+      {title:'The Scourging at the Pillar', text:'Jesus is unjustly scourged, bearing in his body the weight of our faults.'},
+      {title:'The Crowning with Thorns', text:'Jesus is crowned and mocked as a false king, bearing the contempt in silence.'},
+      {title:'The Carrying of the Cross', text:'Jesus carries the cross on the way to Calvary, helped by Simon of Cyrene along the road of suffering.'},
+      {title:'The Crucifixion and Death of Jesus', text:'Jesus dies on the cross, forgiving those who offend him and giving his life for everyone.'}
+    ]
+  },
+  glorious: {
+    name:'Glorious Mysteries', days:[3,0],
+    list:[
+      {title:'The Resurrection', text:'Jesus rises gloriously, conquering death and opening the path to new life.'},
+      {title:'The Ascension', text:'Jesus ascends into heaven and promises to send the Holy Spirit upon his own.'},
+      {title:'The Descent of the Holy Spirit', text:'The Holy Spirit descends upon Mary and the apostles, giving birth to the Church.'},
+      {title:'The Assumption of Mary', text:'Mary is taken up, body and soul, into the glory of heaven.'},
+      {title:'The Coronation of Mary', text:'Mary is crowned Queen, together with her Son, forever.'}
+    ]
+  },
+  luminous: {
+    name:'Luminous Mysteries', days:[4],
+    list:[
+      {title:'The Baptism in the Jordan', text:'Jesus is baptized in the Jordan and the Father proclaims him his beloved Son.'},
+      {title:'The Wedding at Cana', text:'Jesus performs his first sign through his Mother\'s intercession, at a simple wedding.'},
+      {title:'The Proclamation of the Kingdom', text:'Jesus preaches conversion and announces that the Kingdom of God is at hand.'},
+      {title:'The Transfiguration', text:'Jesus is transfigured before his disciples, letting them glimpse his glory.'},
+      {title:'The Institution of the Eucharist', text:'Jesus institutes the Eucharist at the Last Supper, giving himself under the form of bread and wine.'}
+    ]
+  }
+};
+
+function getTodayMysterySet(d=new Date()){
+  const day = d.getDay();
+  for(const key in MYSTERY_SETS){
+    if(MYSTERY_SETS[key].days.includes(day)) return {key, ...MYSTERY_SETS[key]};
+  }
+  return {key:'joyful', ...MYSTERY_SETS.joyful};
+}
+
+// Calculates Easter Sunday for a given year (the "Anonymous" Gregorian
+// computus algorithm by Meeus/Jones/Butcher).
+function getEasterDate(year){
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19*a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2*e + 2*i - h - k) % 7;
+  const m = Math.floor((a + 11*h + 22*l) / 451);
+  const month = Math.floor((h + l - 7*m + 114) / 31); // 3 = March, 4 = April
+  const day = ((h + l - 7*m + 114) % 31) + 1;
+  return new Date(year, month - 1, day);
+}
+
+// Eastertide runs from Easter Sunday through Pentecost Sunday (49 days
+// later), inclusive. During this period, the Regina Caeli is prayed
+// instead of the Angelus.
+function isEastertide(d=new Date()){
+  const easter = getEasterDate(d.getFullYear());
+  const pentecost = new Date(easter);
+  pentecost.setDate(pentecost.getDate() + 49);
+  const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  return today >= easter && today <= pentecost;
+}
+
+// Returns the correct prayer (Angelus or Regina Caeli) for today's
+// date in the liturgical calendar: the label to display, the reading
+// text (with versicle/response), and a flowing version for listening.
+function getAngelusInfo(d=new Date()){
+  if(isEastertide(d)){
+    return {
+      label: 'Regina Caeli',
+      guideText: 'During Eastertide, the Regina Caeli replaces the Angelus, celebrating the Lord\'s Resurrection (once Eastertide ends, the Angelus is prayed again):\n\nQueen of Heaven, rejoice; alleluia.\nFor He whom you did merit to bear; alleluia.\nHas risen, as He said; alleluia.\nPray for us to God; alleluia.\n\nV. Rejoice and be glad, O Virgin Mary; alleluia.\nR. For the Lord has truly risen; alleluia.\n\nLet us pray: O God, who through the resurrection of your Son, our Lord Jesus Christ, did vouchsafe to give joy to the world; grant, we beseech you, that through his Mother, the Virgin Mary, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.',
+      spokenText: 'Queen of Heaven, rejoice, alleluia. For He whom you did merit to bear, alleluia. Has risen, as He said, alleluia. Pray for us to God, alleluia. Rejoice and be glad, O Virgin Mary, alleluia. For the Lord has truly risen, alleluia. Let us pray: O God, who through the resurrection of your Son, our Lord Jesus Christ, did vouchsafe to give joy to the world; grant, we beseech you, that through his Mother, the Virgin Mary, we may obtain the joys of everlasting life. Through the same Christ our Lord. Amen.'
+    };
+  }
+  return {
+    label: 'Angelus',
+    guideText: 'At midday, the Angelus recalls the Incarnation of the Son of God (during Eastertide, the Regina Caeli is prayed instead):\n\nV. The Angel of the Lord declared unto Mary.\nR. And she conceived of the Holy Spirit.\nHail Mary…\n\nV. Behold the handmaid of the Lord.\nR. Be it done unto me according to Thy word.\nHail Mary…\n\nV. And the Word was made flesh.\nR. And dwelt among us.\nHail Mary…\n\nV. Pray for us, O holy Mother of God.\nR. That we may be made worthy of the promises of Christ.\n\nLet us pray: Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His passion and cross be brought to the glory of His resurrection. Through the same Christ Our Lord. Amen.',
+    spokenText: `The Angel of the Lord declared unto Mary. And she conceived of the Holy Spirit. ${PRAYERS.hailmary} Behold the handmaid of the Lord. Be it done unto me according to Thy word. ${PRAYERS.hailmary} And the Word was made flesh. And dwelt among us. ${PRAYERS.hailmary} Pray for us, O holy Mother of God. That we may be made worthy of the promises of Christ. Let us pray: Pour forth, we beseech Thee, O Lord, Thy grace into our hearts, that we to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His passion and cross be brought to the glory of His resurrection. Through the same Christ Our Lord. Amen.`
+  };
+}
+
+let config = null;
+let editing = {daily:false, weekly:false, monthly:false};
+let storageOk = true;
+let autoRosaryActive = false;
+let hailMaryLoopActive = false;
+
+function pad(n){return n<10?'0'+n:''+n;}
+function todayKey(d=new Date()){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;}
+function monthKey(d=new Date()){return `${d.getFullYear()}-${pad(d.getMonth()+1)}`;}
+function isoWeekKey(d=new Date()){
+  const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = (dt.getUTCDay()+6)%7;
+  dt.setUTCDate(dt.getUTCDate()-dayNum+3);
+  const firstThursday = new Date(Date.UTC(dt.getUTCFullYear(),0,4));
+  const week = 1 + Math.round(((dt-firstThursday)/86400000 - 3 + (firstThursday.getUTCDay()+6)%7)/7);
+  return `${dt.getUTCFullYear()}-W${pad(week)}`;
+}
+
+// Inside Claude.ai, window.storage exists (cloud persistence).
+// When this file is opened on its own (downloaded, double-clicked, etc.)
+// that function doesn't exist, so we fall back to the browser's own
+// localStorage — this way checking items off works in both cases.
+const hasClaudeStorage = (typeof window !== 'undefined') && !!window.storage && typeof window.storage.get === 'function';
+const LOCAL_PREFIX = 'plan-of-life:';
+
+async function safeGet(key){
+  if(hasClaudeStorage){
+    try{
+      const r = await window.storage.get(key, false);
+      return r ? JSON.parse(r.value) : null;
+    }catch(e){ return null; }
+  }
+  try{
+    const v = localStorage.getItem(LOCAL_PREFIX+key);
+    return v ? JSON.parse(v) : null;
+  }catch(e){ return null; }
+}
+async function safeSet(key, val){
+  if(hasClaudeStorage){
+    try{
+      await window.storage.set(key, JSON.stringify(val), false);
+      storageOk = true;
+    }catch(e){ storageOk = false; }
+    return;
+  }
+  try{
+    localStorage.setItem(LOCAL_PREFIX+key, JSON.stringify(val));
+    storageOk = true;
+  }catch(e){ storageOk = false; }
+}
+async function safeListKeys(){
+  if(hasClaudeStorage){
+    try{
+      const r = await window.storage.list('', false);
+      return (r && r.keys) ? r.keys : [];
+    }catch(e){ return []; }
+  }
+  try{
+    const keys = [];
+    for(let i=0;i<localStorage.length;i++){
+      const k = localStorage.key(i);
+      if(k && k.indexOf(LOCAL_PREFIX)===0) keys.push(k.slice(LOCAL_PREFIX.length));
+    }
+    return keys;
+  }catch(e){ return []; }
+}
+async function safeDelete(key){
+  if(hasClaudeStorage){
+    try{ await window.storage.delete(key, false); }catch(e){}
+    return;
+  }
+  try{ localStorage.removeItem(LOCAL_PREFIX+key); }catch(e){}
+}
+
+async function loadConfig(){
+  const c = await safeGet('items-config');
+  const fresh = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+  if(!c){
+    config = fresh;
+    await safeSet('items-config', config);
+  } else {
+    config = Object.assign({}, fresh, c);
+    if(!config.reminders) config.reminders = fresh.reminders;
+    if(!config.rosary) config.rosary = fresh.rosary;
+    await safeSet('items-config', config);
+  }
+}
+async function saveConfig(){ await safeSet('items-config', config); }
+
+async function getEntry(kind, key){
+  const e = await safeGet(`entry:${kind}:${key}`);
+  return e || [];
+}
+async function toggleEntry(kind, entryKey, itemId){
+  const list = await getEntry(kind, entryKey);
+  const idx = list.indexOf(itemId);
+  if(idx>-1) list.splice(idx,1); else list.push(itemId);
+  await safeSet(`entry:${kind}:${entryKey}`, list);
+  return list;
+}
+
+async function computeStreak(){
+  let streak = 0;
+  let d = new Date();
+  let key = todayKey(d);
+  let entry = await getEntry('daily', key);
+  const allDone = arr => config.daily.every(it => arr.includes(it.id));
+  if(!allDone(entry)){
+    d.setDate(d.getDate()-1);
+  }
+  for(let i=0;i<400;i++){
+    key = todayKey(d);
+    entry = await getEntry('daily', key);
+    if(allDone(entry) && entry.length>0){
+      streak++;
+      d.setDate(d.getDate()-1);
+    } else break;
+  }
+  return streak;
+}
+
+async function getHistory(days=28){
+  const cells = [];
+  const d = new Date();
+  for(let i=days-1;i>=0;i--){
+    const dd = new Date(d);
+    dd.setDate(dd.getDate()-i);
+    const key = todayKey(dd);
+    const entry = await getEntry('daily', key);
+    const pct = config.daily.length ? entry.length/config.daily.length : 0;
+    cells.push({key, pct});
+  }
+  return cells;
+}
+
+function pickEnglishVoice(){
+  try{
+    const voices = window.speechSynthesis.getVoices();
+    return voices.find(v=>v.lang && v.lang.toLowerCase().startsWith('en')) || voices[0] || null;
+  }catch(e){ return null; }
+}
+
+function speak(text){
+  try{
+    if(!('speechSynthesis' in window)){
+      showToast('Your browser does not support voice playback.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.rate = 0.92;
+    const voice = pickEnglishVoice();
+    if(voice) utter.voice = voice;
+    window.speechSynthesis.speak(utter);
+  }catch(e){
+    showToast('Could not play audio.');
+  }
+}
+function stopSpeaking(){
+  try{ if('speechSynthesis' in window) window.speechSynthesis.cancel(); }catch(e){}
+}
+
+// Same as speak(), but returns a promise that resolves when the speech
+// finishes — lets us chain prayers in sequence (hands-free mode)
+// without overlapping audio.
+function speakAsync(text){
+  return new Promise((resolve)=>{
+    try{
+      if(!('speechSynthesis' in window)){ resolve(); return; }
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.rate = 0.92;
+      const voice = pickEnglishVoice();
+      if(voice) utter.voice = voice;
+      utter.onend = ()=>resolve();
+      utter.onerror = ()=>resolve();
+      window.speechSynthesis.speak(utter);
+    }catch(e){ resolve(); }
+  });
+}
+function wait(ms){ return new Promise(r=>setTimeout(r, ms)); }
+
+async function getRosaryEntry(dateKey){
+  const e = await safeGet(`entry:rosarymyst:${dateKey}`);
+  return e || [];
+}
+async function toggleRosaryMystery(idx){
+  const dKey = todayKey();
+  const list = await getRosaryEntry(dKey);
+  const i = list.indexOf(idx);
+  if(i>-1) list.splice(i,1); else list.push(idx);
+  await safeSet(`entry:rosarymyst:${dKey}`, list);
+  if(list.length>=5){
+    const dailyEntry = await getEntry('daily', dKey);
+    if(!dailyEntry.includes('d7')){
+      dailyEntry.push('d7');
+      await safeSet(`entry:daily:${dKey}`, dailyEntry);
+    }
+  }
+  return list;
+}
+
+// Marks a mystery as prayed without toggling it off (for hands-free
+// mode: if it's already marked, it stays marked).
+async function markRosaryMysteryDone(idx){
+  const dKey = todayKey();
+  const list = await getRosaryEntry(dKey);
+  if(!list.includes(idx)){
+    list.push(idx);
+    await safeSet(`entry:rosarymyst:${dKey}`, list);
+  }
+  if(list.length>=5){
+    const dailyEntry = await getEntry('daily', dKey);
+    if(!dailyEntry.includes('d7')){
+      dailyEntry.push('d7');
+      await safeSet(`entry:daily:${dKey}`, dailyEntry);
+    }
+  }
+  return list;
+}
+
+function beadPositions(n, cx, cy, r){
+  const pts = [];
+  for(let i=0;i<n;i++){
+    const angle = (90 + i*(360/n)) * Math.PI/180;
+    pts.push({x: cx + r*Math.cos(angle), y: cy + r*Math.sin(angle)});
+  }
+  return pts;
+}
+
+async function render(){
+  const app = document.getElementById('app');
+  const now = new Date();
+  const dKey = todayKey(now);
+  const wKey = isoWeekKey(now);
+  const mKey = monthKey(now);
+
+  const dailyEntry = await getEntry('daily', dKey);
+  const weeklyEntry = await getEntry('weekly', wKey);
+  const monthlyEntry = await getEntry('monthly', mKey);
+  const streak = await computeStreak();
+  const history = await getHistory(28);
+
+  const dayLabel = `${DAY_NAMES[now.getDay()]}, ${MONTH_NAMES[now.getMonth()]} ${now.getDate()}`;
+  const doneCount = dailyEntry.length;
+  const totalCount = config.daily.length || 1;
+
+  const pts = beadPositions(config.daily.length, 110, 105, 80);
+  const beadsSvg = config.daily.map((it,i)=>{
+    const p = pts[i];
+    const isDone = dailyEntry.includes(it.id);
+    return `<g class="bead" data-kind="daily" data-id="${it.id}">
+      <circle class="bead-circle ${isDone?'done':''}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="9.5"></circle>
+    </g>`;
+  }).join('');
+  const lastPt = pts[0] || {x:110,y:185};
+
+  app.innerHTML = `
+    <h1>Plan of Life</h1>
+    <div class="date-line">${dayLabel}</div>
+
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 220 250">
+        <line class="cross-line" x1="110" y1="${lastPt.y}" x2="110" y2="228" />
+        <line class="cross-arm" x1="99" y1="216" x2="121" y2="216" />
+        <line class="cross-arm" x1="110" y1="206" x2="110" y2="228" />
+        ${beadsSvg}
+        <text class="ring-center-num" x="110" y="98" text-anchor="middle">${doneCount}/${totalCount}</text>
+        <text class="ring-center-label" x="110" y="118" text-anchor="middle">done today</text>
+      </svg>
+    </div>
+
+    <div class="streak-row">Current streak: <b>${streak} ${streak===1?'day':'days'}</b> with every norm completed</div>
+
+    <div class="section" id="sec-reminders">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Reminders</div>
+          <div class="section-sub">vibration / gentle alert during the day</div>
+        </div>
+        <label class="rem-switch">
+          <input type="checkbox" id="rem-enabled" ${config.reminders.enabled?'checked':''} />
+          <span></span>
+        </label>
+      </div>
+      <div id="rem-times-wrap" style="${config.reminders.enabled?'':'display:none;'}">
+        <div class="rem-times">
+          ${config.reminders.times.map((t,i)=>`
+            <div class="rem-time-row">
+              <input type="time" class="rem-time-input" data-idx="${i}" value="${t}" />
+              <button class="item-remove rem-time-remove" data-idx="${i}" style="display:inline-block;">✕</button>
+            </div>`).join('')}
+        </div>
+        <button class="edit-toggle" id="rem-add-time">+ add a time</button>
+        <div class="rem-note">Works while this tab stays open on your phone or computer; the browser can't alert you if the app is closed. This is a gentle aid, not a system alarm.</div>
+      </div>
+    </div>
+
+    <div class="section ${editing.daily?'editing':''}" id="sec-daily">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Daily</div>
+          <div class="section-sub">${config.daily.length} norms — tap to check off</div>
+        </div>
+        <button class="edit-toggle" data-sec="daily">${editing.daily?'done':'edit'}</button>
+      </div>
+      ${config.daily.map(it=>{
+        const done = dailyEntry.includes(it.id);
+        const displayLabel = it.id==='d11' ? getAngelusInfo().label : it.label;
+        return `<div class="item-row">
+          <div class="chk ${done?'done':''}" data-kind="daily" data-id="${it.id}"></div>
+          <div class="item-label ${done?'done':''}">${escapeHtml(displayLabel)}</div>
+          ${it.id==='d7' ? '<button class="rosary-btn" id="open-rosary-btn" title="Pray the Rosary">📿</button>' : ''}
+          ${it.id==='d11' ? '<button class="rosary-btn" id="angelus-listen-btn" title="Listen">🔊</button>' : ''}
+          <button class="guide-btn" data-kind="daily" data-id="${it.id}" title="Guide">i</button>
+          <button class="item-remove" data-sec="daily" data-id="${it.id}">✕</button>
+        </div>`;
+      }).join('')}
+      <div class="add-row" data-sec="daily">
+        <input type="text" placeholder="Add a daily norm…" />
+        <button data-add="daily">add</button>
+      </div>
+    </div>
+
+    <div class="section ${editing.weekly?'editing':''}" id="sec-weekly">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Weekly</div>
+          <div class="section-sub">resets every Monday</div>
+        </div>
+        <button class="edit-toggle" data-sec="weekly">${editing.weekly?'done':'edit'}</button>
+      </div>
+      ${config.weekly.map(it=>{
+        const done = weeklyEntry.includes(it.id);
+        return `<div class="item-row">
+          <div class="chk ${done?'done':''}" data-kind="weekly" data-id="${it.id}"></div>
+          <div class="item-label ${done?'done':''}">${escapeHtml(it.label)}</div>
+          <button class="guide-btn" data-kind="weekly" data-id="${it.id}" title="Guide">i</button>
+          <button class="item-remove" data-sec="weekly" data-id="${it.id}">✕</button>
+        </div>`;
+      }).join('')}
+      <div class="add-row" data-sec="weekly">
+        <input type="text" placeholder="Add a weekly norm…" />
+        <button data-add="weekly">add</button>
+      </div>
+    </div>
+
+    <div class="section ${editing.monthly?'editing':''}" id="sec-monthly">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Monthly</div>
+          <div class="section-sub">resets on the 1st</div>
+        </div>
+        <button class="edit-toggle" data-sec="monthly">${editing.monthly?'done':'edit'}</button>
+      </div>
+      ${config.monthly.map(it=>{
+        const done = monthlyEntry.includes(it.id);
+        return `<div class="item-row">
+          <div class="chk ${done?'done':''}" data-kind="monthly" data-id="${it.id}"></div>
+          <div class="item-label ${done?'done':''}">${escapeHtml(it.label)}</div>
+          <button class="guide-btn" data-kind="monthly" data-id="${it.id}" title="Guide">i</button>
+          <button class="item-remove" data-sec="monthly" data-id="${it.id}">✕</button>
+        </div>`;
+      }).join('')}
+      <div class="add-row" data-sec="monthly">
+        <input type="text" placeholder="Add a monthly norm…" />
+        <button data-add="monthly">add</button>
+      </div>
+      <div class="next-ex" style="margin-top:10px;">
+        Next Annual Retreat (Spiritual Exercises):
+        <input type="text" id="next-ex-input" placeholder="e.g. Oct 12–18" value="${escapeHtml(config.nextExercises||'')}" />
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Last 28 days</div>
+          <div class="section-sub">intensity = % of norms completed</div>
+        </div>
+      </div>
+      <div class="history">
+        ${history.map(c=>`<div class="h-cell" style="background:${cellColor(c.pct)}" title="${c.key}: ${Math.round(c.pct*100)}%"></div>`).join('')}
+      </div>
+      <div class="h-legend"><span>28 days ago</span><span>today</span></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-title">What the Plan of Life Is</div>
+          <div class="section-sub">in St. Josemaría's teaching</div>
+        </div>
+      </div>
+      <div class="mystery-text" style="margin-top:0;">St. Josemaría taught that the plan of life — the norms of piety already listed above — is not an end in itself, but an indispensable means of keeping our union with God alive in the midst of ordinary work. He insisted on living all of them faithfully, even when it's difficult or feels dry: "be constant and demanding with your norms of piety, even when you are tired or they feel arid to you."</div>
+      <a class="modal-link" href="https://opusdei.org/en-us/article/combat-closeness-mission-11-plan-of-life-1/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:10px;">Read the full article ↗</a>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Other Resources</div>
+          <div class="section-sub">to accompany your interior life</div>
+        </div>
+      </div>
+      <div class="item-row" style="border-bottom:none;">
+        <div class="item-label">🎙️ Podcast — St. Josemaria Institute</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">Weekly meditations by a priest, in the spirit of St. Josemaría, to help you pray and examine your day. Note: unlike the Spanish-language "Opus Dei" channel, there isn't an identical official English-language Opus Dei podcast, so this is the closest well-established option in the same spirit.</div>
+      <a class="modal-link" href="https://stjosemaria.org/podcast/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Open the podcast ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">📖 New Testament (Bible)</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">The full text of Sacred Scripture as published on the official website of the Holy See.</div>
+      <a class="modal-link" href="https://www.vatican.va/archive/ENG0839/_INDEX.HTM" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read at vatican.va ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">📘 Catechism of the Catholic Church</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">The complete text of the Catechism, as published on the official website of the Holy See.</div>
+      <a class="modal-link" href="https://www.vatican.va/content/catechism/en.html" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read at vatican.va ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">📿 Pocket Prayer Book</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">The official selection of Christian prayers and devotions (Common Prayers, the Holy Trinity, Eucharistic Adoration, Preparation for Holy Mass, and more), browsable online or downloadable to read offline.</div>
+      <a class="modal-link" href="https://opusdei.org/en/prayers/?pb1=en&pb2=latin" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Open the prayer book ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">📚 "Speaking with God" — Francisco Fernández-Carvajal</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">A meditation for every day of the year, widely used for mental prayer and spiritual reading. The English-language site of the "Hablar con Dios" series.</div>
+      <a class="modal-link" href="https://hablarcondios.org/en/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Visit the site ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">📖 "Towards Holiness"</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">A homily by St. Josemaría (26 November 1967, included in <i>Friends of God</i>), which he himself called a "template for the interior life": a summary of the whole spiritual path of a Christian.</div>
+      <a class="modal-link" href="https://opusdei.org/en-us/article/towards-holiness/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read at opusdei.org ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">📖 "Passionately Loving the World"</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">A homily St. Josemaría delivered on October 8, 1967 on the campus of the University of Navarre, widely regarded as a key synthesis of holiness in ordinary life and work.</div>
+      <a class="modal-link" href="https://opusdei.org/en-us/article/passionately-loving-the-world-2/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read at opusdei.org ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">✉️ Current Letter from the Prelate</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">Links straight to the official page of pastoral letters and messages from the Prelate of Opus Dei (Msgr. Fernando Ocáriz) — every time you open it, you'll see the latest one, without having to look it up.</div>
+      <a class="modal-link" href="https://opusdei.org/en/page/pastoral-letters/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read the current letter ↗</a>
+    </div>
+
+    ${!storageOk?'<div class="err">Could not save. Please try again in a moment.</div>':''}
+
+    <div class="reset-link"><button id="reset-btn">Reset all my data</button></div>
+  `;
+
+  attachHandlers();
+}
+
+function cellColor(pct){
+  if(pct<=0) return 'var(--panel-2)';
+  const alpha = 0.15 + pct*0.85;
+  return `rgba(201,164,76,${alpha.toFixed(2)})`;
+}
+
+function escapeHtml(s){
+  return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function attachHandlers(){
+  document.querySelectorAll('.chk, .bead').forEach(el=>{
+    el.addEventListener('click', async (e)=>{
+      const target = e.currentTarget;
+      const kind = target.dataset.kind;
+      const id = target.dataset.id;
+      let entryKey;
+      if(kind==='daily') entryKey = todayKey();
+      else if(kind==='weekly') entryKey = isoWeekKey();
+      else entryKey = monthKey();
+      await toggleEntry(kind, entryKey, id);
+      await render();
+    });
+  });
+
+  document.querySelectorAll('.edit-toggle').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const sec = e.currentTarget.dataset.sec;
+      editing[sec] = !editing[sec];
+      render();
+    });
+  });
+
+  document.querySelectorAll('[data-add]').forEach(btn=>{
+    btn.addEventListener('click', async (e)=>{
+      const sec = e.currentTarget.dataset.add;
+      const input = document.querySelector(`.add-row[data-sec="${sec}"] input`);
+      const val = input.value.trim();
+      if(!val) return;
+      const id = sec[0]+Date.now();
+      config[sec].push({id, label: val});
+      await saveConfig();
+      render();
+    });
+  });
+
+  document.querySelectorAll('.item-remove').forEach(btn=>{
+    btn.addEventListener('click', async (e)=>{
+      const sec = e.currentTarget.dataset.sec;
+      const id = e.currentTarget.dataset.id;
+      if(!sec || !id) return;
+      config[sec] = config[sec].filter(it=>it.id!==id);
+      await saveConfig();
+      render();
+    });
+  });
+
+  document.querySelectorAll('.guide-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const kind = e.currentTarget.dataset.kind;
+      const id = e.currentTarget.dataset.id;
+      const item = config[kind].find(it=>it.id===id);
+      if(!item) return;
+      if(id === 'd11'){
+        const info = getAngelusInfo();
+        openGuide({label: info.label, guide: {text: info.guideText, url: ''}});
+      } else {
+        openGuide(item);
+      }
+    });
+  });
+
+  const openRosaryBtn = document.getElementById('open-rosary-btn');
+  if(openRosaryBtn){
+    openRosaryBtn.addEventListener('click', openRosary);
+  }
+
+  const angelusListenBtn = document.getElementById('angelus-listen-btn');
+  if(angelusListenBtn){
+    angelusListenBtn.addEventListener('click', ()=>{
+      speak(getAngelusInfo().spokenText);
+    });
+  }
+
+  const remEnabled = document.getElementById('rem-enabled');
+  if(remEnabled){
+    remEnabled.addEventListener('change', async (e)=>{
+      config.reminders.enabled = e.target.checked;
+      if(config.reminders.enabled && !config.reminders.permissionAsked){
+        config.reminders.permissionAsked = true;
+        try{
+          if('Notification' in window && Notification.permission === 'default'){
+            await Notification.requestPermission();
+          }
+        }catch(err){}
+      }
+      await saveConfig();
+      render();
+    });
+  }
+
+  document.querySelectorAll('.rem-time-input').forEach(inp=>{
+    inp.addEventListener('change', async (e)=>{
+      const idx = +e.target.dataset.idx;
+      config.reminders.times[idx] = e.target.value;
+      await saveConfig();
+    });
+  });
+
+  const addTimeBtn = document.getElementById('rem-add-time');
+  if(addTimeBtn){
+    addTimeBtn.addEventListener('click', async ()=>{
+      config.reminders.times.push('12:00');
+      await saveConfig();
+      render();
+    });
+  }
+
+  document.querySelectorAll('.rem-time-remove').forEach(btn=>{
+    btn.addEventListener('click', async (e)=>{
+      const idx = +e.currentTarget.dataset.idx;
+      config.reminders.times.splice(idx,1);
+      await saveConfig();
+      render();
+    });
+  });
+
+  const nextEx = document.getElementById('next-ex-input');
+  if(nextEx){
+    nextEx.addEventListener('change', async (e)=>{
+      config.nextExercises = e.target.value;
+      await saveConfig();
+    });
+  }
+
+  const resetBtn = document.getElementById('reset-btn');
+  if(resetBtn){
+    resetBtn.addEventListener('click', async ()=>{
+      if(!confirm('This will erase your configuration and history saved on this device. Continue?')) return;
+      try{
+        const keys = await safeListKeys();
+        for(const k of keys) await safeDelete(k);
+      }catch(e){}
+      config = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+      await saveConfig();
+      render();
+    });
+  }
+}
+
+function openGuide(item){
+  const overlay = document.getElementById('modal-overlay');
+  const title = document.getElementById('modal-title');
+  const text = document.getElementById('modal-text');
+  const actions = document.getElementById('modal-actions');
+  const guide = item.guide || {};
+  title.textContent = item.label;
+  text.textContent = guide.text || 'There isn\'t a saved guide for this norm yet. You can ask your spiritual director, or look up more information.';
+
+  let links = guide.links;
+  if(!links || !links.length){
+    if(guide.url){
+      links = [{label:'Read more ↗', url:guide.url}];
+    } else if(!guide.text){
+      links = [{label:'Search ↗', url:`https://www.google.com/search?q=${encodeURIComponent(item.label)}`}];
+    } else {
+      links = [];
+    }
+  }
+
+  actions.innerHTML = links.map(l=>
+    `<a class="modal-link" href="${l.url}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a>`
+  ).join('') + `<button class="modal-close" id="modal-close-btn">close</button>`;
+  document.getElementById('modal-close-btn').addEventListener('click', closeGuide);
+
+  overlay.classList.add('show');
+}
+function closeGuide(){
+  document.getElementById('modal-overlay').classList.remove('show');
+}
+
+async function openRosary(){
+  await renderRosaryPanel();
+  document.getElementById('rosary-overlay').classList.add('show');
+}
+function closeRosary(){
+  autoRosaryActive = false;
+  hailMaryLoopActive = false;
+  stopSpeaking();
+  document.getElementById('rosary-overlay').classList.remove('show');
+}
+
+async function renderRosaryPanel(){
+  const panel = document.getElementById('rosary-panel-content');
+  const set = getTodayMysterySet();
+  const dKey = todayKey();
+  const prayed = await getRosaryEntry(dKey);
+  const mode = config.rosary.mode;
+
+  panel.innerHTML = `
+    <div class="modal-title">Holy Rosary</div>
+    <div class="rosary-set-name">Today: ${set.name}</div>
+    <div class="rem-note" style="margin-bottom:14px;">The meditations below are a brief summary, original to this app. For St. Josemaría's complete meditations on each mystery, as published on the official Opus Dei site: <a href="https://opusdei.org/en-us/article/how-to-pray-the-rosary/" target="_blank" rel="noopener" style="color:var(--gold);">read here ↗</a></div>
+
+    <div class="prayer-row">
+      <button class="prayer-btn" data-prayer="ourfather">🔊 Our Father</button>
+      <button class="prayer-btn" id="avemaria-btn" data-prayer="hailmary">🔊 Hail Mary</button>
+      <button class="prayer-btn" data-prayer="glorybe">🔊 Glory Be</button>
+    </div>
+
+    <button class="listen-btn" id="auto-rosary-btn" style="width:100%;margin-bottom:6px;padding:11px;font-size:12.5px;">🚗 Hands-free mode (pray it all automatically)</button>
+    <div class="rem-note" id="auto-status" style="text-align:center;min-height:14px;margin-bottom:14px;">Great for the car or while walking: plays each mystery's meditation, the Our Father, ten Hail Marys, and the Glory Be out loud, one after another.</div>
+
+    <div class="mode-toggle">
+      <button class="mode-btn ${mode==='session'?'active':''}" data-mode="session">Single session</button>
+      <button class="mode-btn ${mode==='spread'?'active':''}" data-mode="spread">Spread through the day</button>
+    </div>
+
+    <div class="rosary-progress">${prayed.length}/5 mysteries prayed today</div>
+
+    ${set.list.map((m,i)=>{
+      const done = prayed.includes(i);
+      return `<div class="mystery-card ${done?'done':''}">
+        <div class="mystery-head">
+          <div class="mystery-num">${i+1}${['st','nd','rd'][i] && i<3 ? ['st','nd','rd'][i] : 'th'}</div>
+          <div class="mystery-title ${done?'done':''}">${escapeHtml(m.title)}</div>
+          <div class="myst-box ${done?'done':''}" data-mystery-idx="${i}" title="Mark as prayed"></div>
+        </div>
+        <div class="mystery-text">${escapeHtml(m.text)}</div>
+        <div class="mystery-actions">
+          ${mode==='spread' ? `<input type="time" class="mystery-time" data-time-idx="${i}" value="${config.rosary.times[i]||''}" />` : ''}
+          <button class="listen-btn" data-speak="${i}">🔊 Listen to meditation</button>
+        </div>
+      </div>`;
+    }).join('')}
+
+    ${mode==='spread' ? `
+      <div class="rem-toggle-row">
+        <div>
+          <div class="section-title" style="font-size:15px;">Rosary Reminders</div>
+          <div class="section-sub">alerts at each scheduled time</div>
+        </div>
+        <label class="rem-switch">
+          <input type="checkbox" id="rosary-rem-enabled" ${config.rosary.remindersEnabled?'checked':''} />
+          <span></span>
+        </label>
+      </div>
+      <div class="rem-note">When each scheduled time arrives, you'll get an alert (vibration/notice) to pray that mystery. Works while this tab stays open.</div>
+    ` : ''}
+
+    <div class="modal-actions" style="margin-top:16px;">
+      <button class="modal-close" id="rosary-close-btn">close</button>
+    </div>
+  `;
+
+  document.getElementById('rosary-close-btn').addEventListener('click', closeRosary);
+
+  panel.querySelectorAll('.prayer-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const prayerKey = e.currentTarget.dataset.prayer;
+      if(prayerKey === 'hailmary'){
+        playHailMaryLoop(e.currentTarget);
+      } else {
+        hailMaryLoopActive = false;
+        speak(PRAYERS[prayerKey]);
+      }
+    });
+  });
+
+  const autoBtn = document.getElementById('auto-rosary-btn');
+  if(autoBtn){
+    autoBtn.addEventListener('click', startAutoRosary);
+  }
+
+  panel.querySelectorAll('.mode-btn').forEach(btn=>{
+    btn.addEventListener('click', async (e)=>{
+      config.rosary.mode = e.currentTarget.dataset.mode;
+      await saveConfig();
+      renderRosaryPanel();
+    });
+  });
+
+  panel.querySelectorAll('[data-mystery-idx]').forEach(el=>{
+    el.addEventListener('click', async (e)=>{
+      autoRosaryActive = false;
+      hailMaryLoopActive = false;
+      stopSpeaking();
+      await toggleRosaryMystery(+e.currentTarget.dataset.mysteryIdx);
+      renderRosaryPanel();
+      render();
+    });
+  });
+
+  panel.querySelectorAll('[data-speak]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      autoRosaryActive = false;
+      hailMaryLoopActive = false;
+      const idx = +e.currentTarget.dataset.speak;
+      const m = set.list[idx];
+      speak(`${m.title}. ${m.text}`);
+    });
+  });
+
+  panel.querySelectorAll('[data-time-idx]').forEach(inp=>{
+    inp.addEventListener('change', async (e)=>{
+      config.rosary.times[+e.target.dataset.timeIdx] = e.target.value;
+      await saveConfig();
+    });
+  });
+
+  const rosaryRem = document.getElementById('rosary-rem-enabled');
+  if(rosaryRem){
+    rosaryRem.addEventListener('change', async (e)=>{
+      config.rosary.remindersEnabled = e.target.checked;
+      if(config.rosary.remindersEnabled && !config.rosary.permissionAsked){
+        config.rosary.permissionAsked = true;
+        try{
+          if('Notification' in window && Notification.permission === 'default'){
+            await Notification.requestPermission();
+          }
+        }catch(err){}
+      }
+      await saveConfig();
+    });
+  }
+}
+
+// Prays the Hail Mary 10 times in a row out loud, showing the count on
+// the button itself. Tapping it again while it's playing stops it.
+async function playHailMaryLoop(btn){
+  if(hailMaryLoopActive){
+    hailMaryLoopActive = false;
+    stopSpeaking();
+    btn.textContent = '🔊 Hail Mary';
+    return;
+  }
+  autoRosaryActive = false; // don't mix with the full hands-free mode
+  hailMaryLoopActive = true;
+  for(let i=1; i<=10; i++){
+    if(!hailMaryLoopActive) break;
+    btn.textContent = `🔊 Hail Mary (${i}/10)`;
+    await speakAsync(PRAYERS.hailmary);
+    await wait(250);
+  }
+  hailMaryLoopActive = false;
+  btn.textContent = '🔊 Hail Mary';
+}
+
+// Visually marks a mystery card as prayed without re-rendering the
+// whole panel (so it doesn't interrupt hands-free mode).
+function markMysteryDoneVisually(idx){
+  const cards = document.querySelectorAll('#rosary-panel-content .mystery-card');
+  const card = cards[idx];
+  if(!card) return;
+  card.classList.add('done');
+  const box = card.querySelector('.myst-box');
+  if(box) box.classList.add('done');
+  const title = card.querySelector('.mystery-title');
+  if(title) title.classList.add('done');
+}
+
+// Hands-free mode: goes through today's 5 mysteries, speaking the
+// meditation, the Our Father, the ten Hail Marys (with an on-screen
+// count), and the Glory Be for each one, in sequence. Meant for the
+// car or while walking, without touching the phone.
+async function startAutoRosary(){
+  const btn = document.getElementById('auto-rosary-btn');
+  const statusEl = document.getElementById('auto-status');
+
+  if(autoRosaryActive){
+    autoRosaryActive = false;
+    stopSpeaking();
+    if(btn) btn.textContent = '🚗 Hands-free mode (pray it all automatically)';
+    if(statusEl) statusEl.textContent = 'Hands-free mode stopped.';
+    return;
+  }
+
+  hailMaryLoopActive = false;
+  autoRosaryActive = true;
+  if(btn) btn.textContent = '⏹ Stop hands-free mode';
+  const set = getTodayMysterySet();
+
+  for(let i=0; i<set.list.length; i++){
+    if(!autoRosaryActive) break;
+    const m = set.list[i];
+
+    if(statusEl) statusEl.textContent = `Mystery ${i+1}: ${m.title} — meditation`;
+    await speakAsync(`${m.title}. ${m.text}`);
+    if(!autoRosaryActive) break;
+    await wait(400);
+
+    if(statusEl) statusEl.textContent = `Mystery ${i+1} — Our Father`;
+    await speakAsync(PRAYERS.ourfather);
+    if(!autoRosaryActive) break;
+    await wait(300);
+
+    for(let h=1; h<=10; h++){
+      if(!autoRosaryActive) break;
+      if(statusEl) statusEl.textContent = `Mystery ${i+1} — Hail Mary (${h}/10)`;
+      await speakAsync(PRAYERS.hailmary);
+      await wait(200);
+    }
+    if(!autoRosaryActive) break;
+
+    if(statusEl) statusEl.textContent = `Mystery ${i+1} — Glory Be`;
+    await speakAsync(PRAYERS.glorybe);
+    if(!autoRosaryActive) break;
+
+    await markRosaryMysteryDone(i);
+    markMysteryDoneVisually(i);
+    const progressEl = document.querySelector('#rosary-panel-content .rosary-progress');
+    if(progressEl){
+      const prayedNow = await getRosaryEntry(todayKey());
+      progressEl.textContent = `${prayedNow.length}/5 mysteries prayed today`;
+    }
+    render();
+    await wait(600);
+  }
+
+  const finished = autoRosaryActive;
+  autoRosaryActive = false;
+  if(btn) btn.textContent = '🚗 Hands-free mode (pray it all automatically)';
+  if(statusEl) statusEl.textContent = finished
+    ? 'Rosary complete. God bless you. 🙏'
+    : 'Hands-free mode stopped.';
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._h);
+  showToast._h = setTimeout(()=>t.classList.remove('show'), 6000);
+}
+
+function fireReminder(label, customMsg){
+  showToast(customMsg || `Reminder ${label} · a moment for your plan of life`);
+  try{
+    if('vibrate' in navigator) navigator.vibrate([60,40,60]);
+  }catch(e){}
+  try{
+    if('Notification' in window && Notification.permission === 'granted' && document.hidden){
+      new Notification('Plan of Life', {
+        body: customMsg || `Reminder at ${label}: a moment for your interior life.`,
+        silent:false
+      });
+    }
+  }catch(e){}
+}
+
+async function checkReminders(){
+  if(!config) return;
+  const now = new Date();
+  const hhmm = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  const dKey = todayKey(now);
+
+  if(config.reminders && config.reminders.enabled && config.reminders.times.includes(hhmm)){
+    const fired = (await safeGet(`reminders-fired:${dKey}`)) || [];
+    if(!fired.includes(hhmm)){
+      fired.push(hhmm);
+      await safeSet(`reminders-fired:${dKey}`, fired);
+      fireReminder(hhmm);
+    }
+  }
+
+  if(config.rosary && config.rosary.mode==='spread' && config.rosary.remindersEnabled){
+    const idx = config.rosary.times.indexOf(hhmm);
+    if(idx>-1){
+      const fired = (await safeGet(`rosary-fired:${dKey}`)) || [];
+      if(!fired.includes(hhmm)){
+        fired.push(hhmm);
+        await safeSet(`rosary-fired:${dKey}`, fired);
+        const set = getTodayMysterySet(now);
+        const mystery = set.list[idx];
+        if(mystery){
+          fireReminder(hhmm, `Rosary · mystery ${idx+1}: ${mystery.title}`);
+        }
+      }
+    }
+  }
+}
+
+(async function init(){
+  await loadConfig();
+  await render();
+  setInterval(checkReminders, 20000);
+
+  const overlay = document.getElementById('modal-overlay');
+  overlay.addEventListener('click', (e)=>{
+    if(e.target === overlay) closeGuide();
+  });
+
+  const rosaryOverlay = document.getElementById('rosary-overlay');
+  rosaryOverlay.addEventListener('click', (e)=>{
+    if(e.target === rosaryOverlay) closeRosary();
+  });
+})();
+</script>
+</body>
+</html>
 
