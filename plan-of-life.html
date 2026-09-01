@@ -368,13 +368,21 @@
   <div class="modal-panel rosary-panel" id="rosary-panel-content"></div>
 </div>
 
+<div class="modal-overlay" id="annual-overlay">
+  <div class="modal-panel rosary-panel" id="annual-panel-content"></div>
+</div>
+
+<div class="modal-overlay" id="jac-overlay">
+  <div class="modal-panel rosary-panel" id="jac-panel-content"></div>
+</div>
+
 <script>
 const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 const DEFAULT_CONFIG = {
   daily: [
-    {id:'d1', label:'Morning offering on waking', guide:{text:'On waking, offer God the work, joys and setbacks of the day, uniting it to the Holy Mass celebrated throughout the world. St. Josemaría recommended pairing it with the "heroic minute": getting up without delay when the alarm rings, as the first small victory of the day.', links:[
+    {id:'d1', label:'Morning offering on waking', guide:{text:'On waking, offer God the work, joys and setbacks of the day, uniting it to the Holy Mass celebrated throughout the world.\n\nSt. Josemaría lived out the "heroic minute" like this: as soon as he woke, he jumped out of bed, kissed the floor, and said "Serviam!", making the sign of the cross on his forehead, lips, and chest while repeating this prayer (as recounted by Bl. Álvaro del Portillo):\n\nServiam! All my thoughts, all my words, and all the works of this day, I offer to you, Lord, and my entire life, out of love.', links:[
       {label:'The Heroic Minute ↗', url:'https://opusdei.org/en/article/offering-pleasing-to-god-morning-offering-serviam/'},
       {label:'The Preces of Opus Dei ↗', url:'https://opusdei.org/en/article/the-prayers-preces-of-opus-dei/'}
     ]}},
@@ -401,7 +409,7 @@ const DEFAULT_CONFIG = {
     {id:'w2', label:'Circle / formation class', guide:{text:'Attend the weekly formation class (circle), where a point of interior life or doctrine is studied in depth.', url:''}},
     {id:'w3', label:'Spiritual direction', guide:{text:'The fraternal chat — also called Confidence — is the spiritual-direction conversation proper to the faithful of Opus Dei: speaking simply and trustingly about one\'s own interior life, struggles and joys.', url:'https://opusdei.org/en-ng/article/spiritual-accompaniment-2/'}}
   ],
-  reminders: {enabled:false, times:['07:30','13:00','18:30','21:30'], permissionAsked:false},
+  reminders: {enabled:false, times:['07:30','13:00','18:30','21:30'], permissionAsked:false, volume:70},
   rosary: {mode:'session', times:['07:00','11:00','14:00','17:00','20:00'], remindersEnabled:false, permissionAsked:false},
   monthly: [
     {id:'m1', label:'Day of recollection', guide:{text:'A day (or part of one) devoted to unhurried prayer, in an atmosphere of recollection, to review the direction of your interior life.', url:''}},
@@ -413,8 +421,22 @@ const DEFAULT_CONFIG = {
 const PRAYERS = {
   ourfather: 'Our Father, who art in heaven, hallowed be Thy name; Thy kingdom come; Thy will be done on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.',
   hailmary: 'Hail Mary, full of grace, the Lord is with thee. Blessed art thou amongst women, and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.',
-  glorybe: 'Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.'
+  glorybe: 'Glory be to the Father, and to the Son, and to the Holy Spirit. As it was in the beginning, is now, and ever shall be, world without end. Amen.',
+  offering: 'Serviam! All my thoughts, all my words, and all the works of this day, I offer to you, Lord, and my entire life, out of love.',
+  spiritualcommunion: 'I wish, my Lord, to receive You with the purity, humility, and devotion with which Your most holy Mother received You, with the spirit and fervor of the saints.'
 };
+
+const EJACULATIONS = [
+  {text:'I am Yours, for You I was born, what do You want, Jesus, of me?', by:'St. Josemaría'},
+  {text:'O Mary, my mother! Be my guide, night and day.', by:'St. Josemaría'},
+  {text:'My Mother, may your love bind me to the Cross of your Son: may I not lack faith, courage, or daring, to fulfill the will of Jesus.', by:'St. Josemaría'},
+  {text:'Pray for us, holy Mother of God.', by:'St. Josemaría'},
+  {text:'Domina, ut videam. Lady, that I may see.', by:'St. Josemaría'},
+  {text:'Domina, ut sit. Lady, that it may be so.', by:'St. Josemaría'},
+  {text:'Beata Mater et intacta Virgo, intercede pro nobis. Blessed Mother and spotless Virgin, intercede for us.', by:'St. Josemaría'},
+  {text:'Regina Pacis, ora pro nobis. Queen of Peace, pray for us.', by:'St. Josemaría'},
+  {text:'Thank you, forgive me, and help me more.', by:'Blessed Álvaro del Portillo'}
+];
 
 const MYSTERY_SETS = {
   joyful: {
@@ -599,6 +621,7 @@ async function loadConfig(){
   } else {
     config = Object.assign({}, fresh, c);
     if(!config.reminders) config.reminders = fresh.reminders;
+    if(config.reminders.volume === undefined) config.reminders.volume = 70;
     if(!config.rosary) config.rosary = fresh.rosary;
     await safeSet('items-config', config);
   }
@@ -699,6 +722,47 @@ function speakAsync(text){
 }
 function wait(ms){ return new Promise(r=>setTimeout(r, ms)); }
 
+// Synthesized bell sound (no external audio file needed): a few sine
+// waves in an inharmonic ratio typical of a bell, with exponential
+// decay.
+let audioCtx = null;
+function getAudioCtx(){
+  try{
+    if(!audioCtx){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if(audioCtx.state === 'suspended'){ audioCtx.resume().catch(()=>{}); }
+    return audioCtx;
+  }catch(e){ return null; }
+}
+function playBellTone(volume=0.7){
+  const ctx = getAudioCtx();
+  if(!ctx || volume<=0) return;
+  const now = ctx.currentTime;
+  const partials = [1, 2.4, 3.5, 4.2];
+  const fundamental = 440;
+  partials.forEach((mult, idx)=>{
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = fundamental * mult;
+    const peak = volume * (idx===0 ? 0.55 : 0.55/(idx+1));
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(peak, now + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 2.2);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 2.3);
+  });
+}
+async function playBellTolls(count=1, volume=0.7, gapMs=700){
+  for(let i=0; i<count; i++){
+    playBellTone(volume);
+    if(i < count-1) await wait(gapMs);
+  }
+}
+
 async function getRosaryEntry(dateKey){
   const e = await safeGet(`entry:rosarymyst:${dateKey}`);
   return e || [];
@@ -759,6 +823,8 @@ async function render(){
   const monthlyEntry = await getEntry('monthly', mKey);
   const streak = await computeStreak();
   const history = await getHistory(28);
+  const bannerDismissed = await safeGet(`banner-dismissed:${mKey}`);
+  const showMonthlyBanner = now.getDate() <= 3 && !bannerDismissed;
 
   const dayLabel = `${DAY_NAMES[now.getDay()]}, ${MONTH_NAMES[now.getMonth()]} ${now.getDate()}`;
   const doneCount = dailyEntry.length;
@@ -777,6 +843,19 @@ async function render(){
   app.innerHTML = `
     <h1>Plan of Life</h1>
     <div class="date-line">${dayLabel}</div>
+
+    ${showMonthlyBanner ? `
+    <div class="section" style="border-color:var(--gold);">
+      <div class="section-head">
+        <div>
+          <div class="section-title">New month: begin and begin again</div>
+          <div class="section-sub">recommended for today</div>
+        </div>
+        <button class="edit-toggle" id="dismiss-banner-btn">hide</button>
+      </div>
+      <div class="mystery-text" style="margin-top:0;">As ${MONTH_NAMES[now.getMonth()]} begins, St. Josemaría invites you to read — or listen to, in his own voice — this reflection on beginning and beginning again.</div>
+      <a class="modal-link" href="https://opusdei.org/en-us/article/meditation-audio-prelate-opus-dei-14-february/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read and listen ↗</a>
+    </div>` : ''}
 
     <div class="ring-wrap">
       <svg class="ring" viewBox="0 0 220 250">
@@ -811,6 +890,14 @@ async function render(){
             </div>`).join('')}
         </div>
         <button class="edit-toggle" id="rem-add-time">+ add a time</button>
+
+        <div class="section-sub" style="margin-top:14px;display:block;">🔔 Sound volume</div>
+        <div style="display:flex;align-items:center;gap:10px;margin:6px 0;">
+          <input type="range" id="rem-volume" min="0" max="100" value="${config.reminders.volume}" style="flex:1;accent-color:var(--gold);" />
+          <span id="rem-volume-label" style="font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--ink-dim);width:36px;text-align:right;">${config.reminders.volume}%</span>
+        </div>
+        <button class="edit-toggle" id="rem-test-sound">🔔 Test sound</button>
+
         <div class="rem-note">Works while this tab stays open on your phone or computer; the browser can't alert you if the app is closed. This is a gentle aid, not a system alarm.</div>
       </div>
     </div>
@@ -829,6 +916,7 @@ async function render(){
         return `<div class="item-row">
           <div class="chk ${done?'done':''}" data-kind="daily" data-id="${it.id}"></div>
           <div class="item-label ${done?'done':''}">${escapeHtml(displayLabel)}</div>
+          ${it.id==='d1' ? '<button class="rosary-btn" id="offering-listen-btn" title="Listen">🔊</button>' : ''}
           ${it.id==='d7' ? '<button class="rosary-btn" id="open-rosary-btn" title="Pray the Rosary">📿</button>' : ''}
           ${it.id==='d11' ? '<button class="rosary-btn" id="angelus-listen-btn" title="Listen">🔊</button>' : ''}
           <button class="guide-btn" data-kind="daily" data-id="${it.id}" title="Guide">i</button>
@@ -907,6 +995,28 @@ async function render(){
     <div class="section">
       <div class="section-head">
         <div>
+          <div class="section-title">Annual Streak</div>
+          <div class="section-sub">resets every March 19 (St. Joseph)</div>
+        </div>
+      </div>
+      <div class="mystery-text" style="margin-top:0;">A month-by-month history of your consistency, starting fresh each year on the Feast of St. Joseph — with twelve bell tolls that day, if you have sound enabled.</div>
+      <button class="listen-btn" id="open-annual-btn" style="width:100%;padding:10px;">📊 View monthly history</button>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Ejaculatory Prayers</div>
+          <div class="section-sub">brief prayers for throughout the day</div>
+        </div>
+      </div>
+      <div class="mystery-text" style="margin-top:0;">The spiritual communion and short ejaculatory prayers that St. Josemaría prayed, ready to use at any moment — with audio.</div>
+      <button class="listen-btn" id="open-jac-btn" style="width:100%;padding:10px;">🗣️ Open ejaculatory prayers</button>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
           <div class="section-title">What the Plan of Life Is</div>
           <div class="section-sub">in St. Josemaría's teaching</div>
         </div>
@@ -969,6 +1079,12 @@ async function render(){
       </div>
       <div class="mystery-text" style="margin:0 0 10px;">Links straight to the official page of pastoral letters and messages from the Prelate of Opus Dei (Msgr. Fernando Ocáriz) — every time you open it, you'll see the latest one, without having to look it up.</div>
       <a class="modal-link" href="https://opusdei.org/en/page/pastoral-letters/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read the current letter ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">🔄 "Begin and Begin Again"</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">St. Josemaría taught that the interior life is precisely this: beginning and beginning again. This official audio meditation on the same theme is recommended reading/listening at the start of each month. (Recordings of St. Josemaría's own voice are in Spanish; this English-language audio from the Prelature covers the same teaching.)</div>
+      <a class="modal-link" href="https://opusdei.org/en-us/article/meditation-audio-prelate-opus-dei-14-february/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Read and listen ↗</a>
     </div>
 
     ${!storageOk?'<div class="err">Could not save. Please try again in a moment.</div>':''}
@@ -1056,11 +1172,36 @@ function attachHandlers(){
     openRosaryBtn.addEventListener('click', openRosary);
   }
 
+  const offeringListenBtn = document.getElementById('offering-listen-btn');
+  if(offeringListenBtn){
+    offeringListenBtn.addEventListener('click', ()=>{
+      speak(PRAYERS.offering);
+    });
+  }
+
   const angelusListenBtn = document.getElementById('angelus-listen-btn');
   if(angelusListenBtn){
     angelusListenBtn.addEventListener('click', ()=>{
       speak(getAngelusInfo().spokenText);
     });
+  }
+
+  const dismissBannerBtn = document.getElementById('dismiss-banner-btn');
+  if(dismissBannerBtn){
+    dismissBannerBtn.addEventListener('click', async ()=>{
+      await safeSet(`banner-dismissed:${monthKey()}`, true);
+      render();
+    });
+  }
+
+  const openAnnualBtn = document.getElementById('open-annual-btn');
+  if(openAnnualBtn){
+    openAnnualBtn.addEventListener('click', openAnnualHistory);
+  }
+
+  const openJacBtn = document.getElementById('open-jac-btn');
+  if(openJacBtn){
+    openJacBtn.addEventListener('click', openJaculatorias);
   }
 
   const remEnabled = document.getElementById('rem-enabled');
@@ -1105,6 +1246,26 @@ function attachHandlers(){
       render();
     });
   });
+
+  const remVolume = document.getElementById('rem-volume');
+  const remVolumeLabel = document.getElementById('rem-volume-label');
+  if(remVolume){
+    remVolume.addEventListener('input', (e)=>{
+      if(remVolumeLabel) remVolumeLabel.textContent = `${e.target.value}%`;
+    });
+    remVolume.addEventListener('change', async (e)=>{
+      config.reminders.volume = +e.target.value;
+      await saveConfig();
+    });
+  }
+
+  const remTestSound = document.getElementById('rem-test-sound');
+  if(remTestSound){
+    remTestSound.addEventListener('click', ()=>{
+      const vol = (remVolume ? +remVolume.value : config.reminders.volume) / 100;
+      playBellTone(vol);
+    });
+  }
 
   const nextEx = document.getElementById('next-ex-input');
   if(nextEx){
@@ -1406,6 +1567,165 @@ async function startAutoRosary(){
     : 'Hands-free mode stopped.';
 }
 
+// "Annual Streak" panel: walks month by month from the most recent
+// March 19 (Feast of St. Joseph) to today, computing each month's
+// average daily completion and how many consecutive months were 100%
+// complete every day.
+async function openAnnualHistory(){
+  const overlay = document.getElementById('annual-overlay');
+  const panel = document.getElementById('annual-panel-content');
+  panel.innerHTML = `<div class="modal-title">Annual Streak</div><div class="mystery-text">Calculating your history…</div>`;
+  overlay.classList.add('show');
+
+  const now = new Date();
+  let sjYear = now.getFullYear();
+  const marchNineteen = new Date(sjYear, 2, 19);
+  if(now < marchNineteen) sjYear -= 1;
+  const startDate = new Date(sjYear, 2, 19);
+
+  const months = [];
+  let cursor = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+  const endCursor = new Date(now.getFullYear(), now.getMonth(), 1);
+  while(cursor <= endCursor){
+    months.push(new Date(cursor));
+    cursor.setMonth(cursor.getMonth()+1);
+  }
+
+  const monthResults = [];
+  for(const mDate of months){
+    const year = mDate.getFullYear();
+    const month = mDate.getMonth();
+    const isStartMonth = (year===startDate.getFullYear() && month===startDate.getMonth());
+    const isCurrentMonth = (year===now.getFullYear() && month===now.getMonth());
+    const firstDay = isStartMonth ? startDate.getDate() : 1;
+    const lastDay = isCurrentMonth ? now.getDate() : new Date(year, month+1, 0).getDate();
+
+    let sum=0, count=0, fullDays=0;
+    for(let day=firstDay; day<=lastDay; day++){
+      const d = new Date(year, month, day);
+      const entry = await getEntry('daily', todayKey(d));
+      const pct = config.daily.length ? entry.length/config.daily.length : 0;
+      sum += pct; count++;
+      if(pct>=1) fullDays++;
+    }
+    monthResults.push({
+      label: `${MONTH_NAMES[month]} ${year}`,
+      avgPct: count ? sum/count : 0,
+      fullDays, totalDays: count,
+      kept: count>0 && fullDays===count
+    });
+  }
+
+  let streak = 0;
+  for(const m of monthResults){
+    if(m.kept) streak++; else break;
+  }
+
+  panel.innerHTML = `
+    <div class="modal-title">Annual Streak</div>
+    <div class="rosary-set-name">Since March 19, ${startDate.getFullYear()}</div>
+    <div class="rosary-progress">${streak} ${streak===1?'full month':'full months'} in a row</div>
+    ${monthResults.slice().reverse().map(m=>`
+      <div class="mystery-card ${m.kept?'done':''}">
+        <div class="mystery-head">
+          <div class="mystery-title ${m.kept?'done':''}">${escapeHtml(m.label)}</div>
+        </div>
+        <div class="mystery-text">${Math.round(m.avgPct*100)}% average completion · ${m.fullDays}/${m.totalDays} days at 100%</div>
+      </div>
+    `).join('')}
+    <div class="modal-actions" style="margin-top:16px;">
+      <button class="modal-close" id="annual-close-btn">close</button>
+    </div>
+  `;
+  document.getElementById('annual-close-btn').addEventListener('click', closeAnnualHistory);
+}
+function closeAnnualHistory(){
+  document.getElementById('annual-overlay').classList.remove('show');
+}
+
+// Ejaculatory prayers panel: the spiritual communion and the short
+// prayers St. Josemaría prayed, each with its own listen button, to
+// use at any moment during the day. The Preces are saved as the
+// user's own text (see copyright note below).
+async function openJaculatorias(){
+  const overlay = document.getElementById('jac-overlay');
+  const panel = document.getElementById('jac-panel-content');
+  const savedPreces = (await safeGet('preces-text')) || '';
+
+  panel.innerHTML = `
+    <div class="modal-title">Ejaculatory Prayers</div>
+    <div class="rem-note" style="margin-bottom:14px;">Short prayers to "shoot" up to God at any moment of the day — while working, walking, or waiting. St. Josemaría drew them from Scripture and Christian tradition.</div>
+
+    <div class="mystery-card">
+      <div class="mystery-head">
+        <div class="mystery-title">Preces</div>
+      </div>
+      <div class="mystery-text" style="margin-bottom:8px;">The Preces are a text proper to the Prelature (composed by St. Josemaría), not in the public domain, so this app doesn't include it. Download it free from the official page and paste it here once — it will be saved only on your device, and the "Listen" button will read your own text.</div>
+      <a class="modal-link" href="https://opusdei.org/en/article/the-prayers-preces-of-opus-dei/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-bottom:10px;">Download the Preces ↗</a>
+      <textarea id="preces-textarea" placeholder="Paste the text of the Preces here (Latin or Latin-English)…" style="width:100%;min-height:90px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--ink);font-family:'Crimson Pro', serif;font-size:14px;resize:vertical;">${escapeHtml(savedPreces)}</textarea>
+      <div class="mystery-actions" style="margin-top:10px;">
+        <button class="edit-toggle" id="preces-save-btn">💾 Save</button>
+        <button class="listen-btn" id="preces-speak-btn">🔊 Listen</button>
+      </div>
+    </div>
+
+    <div class="mystery-card">
+      <div class="mystery-head">
+        <div class="mystery-title">Spiritual Communion</div>
+      </div>
+      <div class="mystery-text">${escapeHtml(PRAYERS.spiritualcommunion)}</div>
+      <div class="mystery-actions">
+        <button class="listen-btn" data-jac-speak="communion">🔊 Listen</button>
+      </div>
+    </div>
+
+    ${EJACULATIONS.map((j,i)=>`
+      <div class="mystery-card">
+        <div class="mystery-text" style="margin-top:0;">${escapeHtml(j.text)}</div>
+        ${j.by ? `<div class="section-sub" style="display:block;margin-bottom:8px;">— ${escapeHtml(j.by)}</div>` : ''}
+        <div class="mystery-actions">
+          <button class="listen-btn" data-jac-idx="${i}">🔊 Listen</button>
+        </div>
+      </div>
+    `).join('')}
+
+    <div class="modal-actions" style="margin-top:6px;">
+      <button class="modal-close" id="jac-close-btn">close</button>
+    </div>
+  `;
+
+  const precesTextarea = document.getElementById('preces-textarea');
+  document.getElementById('preces-save-btn').addEventListener('click', async ()=>{
+    await safeSet('preces-text', precesTextarea.value);
+    showToast('Preces saved on this device.');
+  });
+  document.getElementById('preces-speak-btn').addEventListener('click', ()=>{
+    const text = precesTextarea.value.trim();
+    if(!text){
+      showToast('Paste the text of the Preces first so it can be read aloud.');
+      return;
+    }
+    speak(text);
+  });
+
+  panel.querySelector('[data-jac-speak="communion"]').addEventListener('click', ()=>{
+    speak(PRAYERS.spiritualcommunion);
+  });
+  panel.querySelectorAll('[data-jac-idx]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const idx = +e.currentTarget.dataset.jacIdx;
+      speak(EJACULATIONS[idx].text);
+    });
+  });
+  document.getElementById('jac-close-btn').addEventListener('click', closeJaculatorias);
+
+  overlay.classList.add('show');
+}
+function closeJaculatorias(){
+  stopSpeaking();
+  document.getElementById('jac-overlay').classList.remove('show');
+}
+
 function showToast(msg){
   const t = document.getElementById('toast');
   if(!t) return;
@@ -1419,6 +1739,10 @@ function fireReminder(label, customMsg){
   showToast(customMsg || `Reminder ${label} · a moment for your plan of life`);
   try{
     if('vibrate' in navigator) navigator.vibrate([60,40,60]);
+  }catch(e){}
+  try{
+    const vol = config && config.reminders ? (config.reminders.volume||0)/100 : 0.7;
+    playBellTone(vol);
   }catch(e){}
   try{
     if('Notification' in window && Notification.permission === 'granted' && document.hidden){
@@ -1460,6 +1784,20 @@ async function checkReminders(){
       }
     }
   }
+
+  // March 19, Feast of St. Joseph: the annual streak resets, marked
+  // with twelve bell tolls (once a year).
+  if(now.getMonth()===2 && now.getDate()===19){
+    const yr = now.getFullYear();
+    const chimed = await safeGet(`sj-chime-fired:${yr}`);
+    if(!chimed){
+      await safeSet(`sj-chime-fired:${yr}`, true);
+      showToast('🔔 March 19, St. Joseph — a new year of your streak begins');
+      try{ if('vibrate' in navigator) navigator.vibrate([80,60,80,60,80,60,80]); }catch(e){}
+      const vol = (config.reminders.volume||70)/100;
+      playBellTolls(12, vol, 550);
+    }
+  }
 }
 
 (async function init(){
@@ -1476,8 +1814,17 @@ async function checkReminders(){
   rosaryOverlay.addEventListener('click', (e)=>{
     if(e.target === rosaryOverlay) closeRosary();
   });
+
+  const annualOverlay = document.getElementById('annual-overlay');
+  annualOverlay.addEventListener('click', (e)=>{
+    if(e.target === annualOverlay) closeAnnualHistory();
+  });
+
+  const jacOverlay = document.getElementById('jac-overlay');
+  jacOverlay.addEventListener('click', (e)=>{
+    if(e.target === jacOverlay) closeJaculatorias();
+  });
 })();
 </script>
 </body>
 </html>
-
