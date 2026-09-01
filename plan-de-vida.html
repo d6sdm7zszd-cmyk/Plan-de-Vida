@@ -378,15 +378,23 @@
   <div class="modal-panel rosary-panel" id="rosary-panel-content"></div>
 </div>
 
+<div class="modal-overlay" id="annual-overlay">
+  <div class="modal-panel rosary-panel" id="annual-panel-content"></div>
+</div>
+
+<div class="modal-overlay" id="jac-overlay">
+  <div class="modal-panel rosary-panel" id="jac-panel-content"></div>
+</div>
+
 <script>
 const DAY_NAMES = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 const MONTH_NAMES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 
 const DEFAULT_CONFIG = {
   daily: [
-    {id:'d1', label:'Ofrecimiento de obras al despertar', guide:{text:'Al despertar, ofrece a Dios el trabajo, las alegrías y las contrariedades del día, uniéndolo a la Santa Misa que se celebra en el mundo entero. San Josemaría recomendaba unirlo al "minuto heroico": levantarse sin demora al sonar el despertador, como primera pequeña victoria del día.', links:[
+    {id:'d1', label:'Ofrecimiento de obras al despertar', guide:{text:'Al despertar, ofrece a Dios el trabajo, las alegrías y las contrariedades del día, uniéndolo a la Santa Misa que se celebra en el mundo entero.\n\nSan Josemaría vivía así el "minuto heroico": nada más despertar, saltaba de la cama, besaba el suelo y decía "¡Serviam!", haciendo la señal de la cruz sobre la frente, los labios y el pecho mientras repetía esta oración (testimonio del beato Álvaro del Portillo):\n\n¡Serviam! Todos mis pensamientos, todas mis palabras y las obras todas de este día, te las ofrezco, Señor, y mi vida entera, por amor.', links:[
       {label:'El minuto heroico ↗', url:'https://opusdei.org/es/article/minuto-heroico/'},
-      {label:'Oración del ofrecimiento de obras ↗', url:'https://opusdei.org/es/tag/ofrecimiento-de-obras/'}
+      {label:'Una jornada-tipo de san Josemaría ↗', url:'https://opusdei.org/es-es/article/3-como-era-el-padre/'}
     ]}},
     {id:'d2', label:'Oración mental (primer rato)', guide:{text:'Dedica un rato, a solas y en silencio, a hablar con Dios como con un amigo: puedes partir de un punto del Evangelio o de un texto espiritual.', url:'https://opusdei.org/es-es/article/editorial-el-arte-de-la-oracion/'}},
     {id:'d3', label:'Oración mental (segundo rato)', guide:{text:'Segundo rato de oración mental, normalmente por la tarde o la noche; el mismo espíritu que el primero: escuchar y responder a Dios con sencillez.', url:'https://opusdei.org/es-es/article/editorial-el-arte-de-la-oracion/'}},
@@ -412,7 +420,7 @@ const DEFAULT_CONFIG = {
     {id:'w2', label:'Círculo / clase de formación', guide:{text:'Asiste a la clase de formación semanal (círculo), donde se profundiza en un punto de vida interior o de doctrina.', url:''}},
     {id:'w3', label:'Dirección espiritual', guide:{text:'La charla fraterna —también llamada Confidencia— es la conversación de dirección espiritual propia de los fieles del Opus Dei: se habla con sencillez y confianza sobre la propia vida interior, luchas y alegrías.', url:'https://opusdei.org/es/article/direccion-espiritual-en-el-opus-dei-acompanamiento-espiritual-en-el-opus-dei/'}}
   ],
-  reminders: {enabled:false, times:['07:30','13:00','18:30','21:30'], permissionAsked:false},
+  reminders: {enabled:false, times:['07:30','13:00','18:30','21:30'], permissionAsked:false, volume:70},
   rosary: {mode:'session', times:['07:00','11:00','14:00','17:00','20:00'], remindersEnabled:false, permissionAsked:false},
   monthly: [
     {id:'m1', label:'Día de Recogimiento', guide:{text:'Un día (o parte de él) dedicado a la oración pausada, en un ambiente de recogimiento, para revisar el rumbo de tu vida interior.', url:''}},
@@ -424,8 +432,22 @@ const DEFAULT_CONFIG = {
 const PRAYERS = {
   padrenuestro: 'Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal. Amén.',
   avemaria: 'Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.',
-  gloria: 'Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.'
+  gloria: 'Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.',
+  ofrecimiento: '¡Serviam! Todos mis pensamientos, todas mis palabras y las obras todas de este día, te las ofrezco, Señor, y mi vida entera, por amor.',
+  comunionespiritual: 'Yo quisiera, Señor, recibiros con aquella pureza, humildad y devoción con que os recibió vuestra Santísima Madre, con el espíritu y fervor de los Santos.'
 };
+
+const JACULATORIAS = [
+  {text:'Tuyo soy, para ti nací, ¿qué quieres, Jesús, de mí?', by:'san Josemaría'},
+  {text:'¡Oh María, madre mía! Sé mi guía noche y día.', by:'san Josemaría'},
+  {text:'Madre mía, que tu amor me ate a la Cruz de tu Hijo: que no me falte la fe, ni la valentía, ni la audacia, para cumplir la voluntad de Jesús.', by:'san Josemaría'},
+  {text:'Ruega por nosotros, Santa Madre de Dios.', by:'san Josemaría'},
+  {text:'Domina, ut videam. Señora, que vea.', by:'san Josemaría'},
+  {text:'Domina, ut sit. Señora, que sea.', by:'san Josemaría'},
+  {text:'Beata Mater et intacta Virgo, intercede pro nobis. Bienaventurada Madre y Virgen sin mancha, intercede por nosotros.', by:'san Josemaría'},
+  {text:'Regina Pacis, ora pro nobis. Reina de la Paz, ruega por nosotros.', by:'san Josemaría'},
+  {text:'Gracias, perdón y ayúdame más.', by:'beato Álvaro del Portillo'}
+];
 
 const MYSTERY_SETS = {
   gozosos: {
@@ -613,6 +635,7 @@ async function loadConfig(){
     // (like reminders) that didn't exist in an older saved config.
     config = Object.assign({}, fresh, c);
     if(!config.reminders) config.reminders = fresh.reminders;
+    if(config.reminders.volume === undefined) config.reminders.volume = 70;
     if(!config.rosary) config.rosary = fresh.rosary;
     await safeSet('items-config', config);
   }
@@ -714,6 +737,47 @@ function speakAsync(text){
 }
 function wait(ms){ return new Promise(r=>setTimeout(r, ms)); }
 
+// Sonido de campana sintetizado (sin depender de ningún archivo de
+// audio externo): varias ondas senoidales con una relación de
+// frecuencias inarmónica típica de una campana, con caída exponencial.
+let audioCtx = null;
+function getAudioCtx(){
+  try{
+    if(!audioCtx){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if(audioCtx.state === 'suspended'){ audioCtx.resume().catch(()=>{}); }
+    return audioCtx;
+  }catch(e){ return null; }
+}
+function playBellTone(volume=0.7){
+  const ctx = getAudioCtx();
+  if(!ctx || volume<=0) return;
+  const now = ctx.currentTime;
+  const partials = [1, 2.4, 3.5, 4.2];
+  const fundamental = 440;
+  partials.forEach((mult, idx)=>{
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = fundamental * mult;
+    const peak = volume * (idx===0 ? 0.55 : 0.55/(idx+1));
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(peak, now + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 2.2);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 2.3);
+  });
+}
+async function playBellTolls(count=1, volume=0.7, gapMs=700){
+  for(let i=0; i<count; i++){
+    playBellTone(volume);
+    if(i < count-1) await wait(gapMs);
+  }
+}
+
 async function getRosaryEntry(dateKey){
   const e = await safeGet(`entry:rosarymyst:${dateKey}`);
   return e || [];
@@ -774,6 +838,8 @@ async function render(){
   const monthlyEntry = await getEntry('monthly', mKey);
   const streak = await computeStreak();
   const history = await getHistory(28);
+  const bannerDismissed = await safeGet(`banner-dismissed:${mKey}`);
+  const showMonthlyBanner = now.getDate() <= 3 && !bannerDismissed;
 
   const dayLabel = `${DAY_NAMES[now.getDay()]}, ${now.getDate()} de ${MONTH_NAMES[now.getMonth()]}`;
   const doneCount = dailyEntry.length;
@@ -792,6 +858,19 @@ async function render(){
   app.innerHTML = `
     <h1>Plan de Vida</h1>
     <div class="date-line">${dayLabel}</div>
+
+    ${showMonthlyBanner ? `
+    <div class="section" style="border-color:var(--gold);">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Nuevo mes: comenzar y recomenzar</div>
+          <div class="section-sub">recomendado para hoy</div>
+        </div>
+        <button class="edit-toggle" id="dismiss-banner-btn">ocultar</button>
+      </div>
+      <div class="mystery-text" style="margin-top:0;">Al empezar ${MONTH_NAMES[now.getMonth()]}, san Josemaría te invita a leer —o escuchar con su propia voz— esta reflexión sobre comenzar y recomenzar.</div>
+      <a class="modal-link" href="https://opusdei.org/es/article/comenzar-recomenzar-perseverancia-video-san-josemaria/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Leer y escuchar ↗</a>
+    </div>` : ''}
 
     <div class="ring-wrap">
       <svg class="ring" viewBox="0 0 220 250">
@@ -826,6 +905,14 @@ async function render(){
             </div>`).join('')}
         </div>
         <button class="edit-toggle" id="rem-add-time">+ añadir hora</button>
+
+        <div class="section-sub" style="margin-top:14px;display:block;">🔔 Volumen del sonido</div>
+        <div style="display:flex;align-items:center;gap:10px;margin:6px 0;">
+          <input type="range" id="rem-volume" min="0" max="100" value="${config.reminders.volume}" style="flex:1;accent-color:var(--gold);" />
+          <span id="rem-volume-label" style="font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--ink-dim);width:36px;text-align:right;">${config.reminders.volume}%</span>
+        </div>
+        <button class="edit-toggle" id="rem-test-sound">🔔 Probar sonido</button>
+
         <div class="rem-note">Funciona mientras esta pestaña permanezca abierta en tu teléfono o computadora; el navegador no puede sonar si la app está cerrada. Es un apoyo suave, no una alarma del sistema.</div>
       </div>
     </div>
@@ -844,6 +931,7 @@ async function render(){
         return `<div class="item-row">
           <div class="chk ${done?'done':''}" data-kind="daily" data-id="${it.id}"></div>
           <div class="item-label ${done?'done':''}">${escapeHtml(displayLabel)}</div>
+          ${it.id==='d1' ? '<button class="rosary-btn" id="ofrecimiento-listen-btn" title="Escuchar">🔊</button>' : ''}
           ${it.id==='d7' ? '<button class="rosary-btn" id="open-rosary-btn" title="Rezar el Rosario">📿</button>' : ''}
           ${it.id==='d11' ? '<button class="rosary-btn" id="angelus-listen-btn" title="Escuchar">🔊</button>' : ''}
           <button class="guide-btn" data-kind="daily" data-id="${it.id}" title="Guía">i</button>
@@ -922,6 +1010,28 @@ async function render(){
     <div class="section">
       <div class="section-head">
         <div>
+          <div class="section-title">Racha anual</div>
+          <div class="section-sub">se reinicia cada 19 de marzo (San José)</div>
+        </div>
+      </div>
+      <div class="mystery-text" style="margin-top:0;">Un histórico mes a mes de tu cumplimiento, que arranca de nuevo cada año en la fiesta de San José — con doce campanadas ese día, si tienes el sonido activado.</div>
+      <button class="listen-btn" id="open-annual-btn" style="width:100%;padding:10px;">📊 Ver histórico mensual</button>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Jaculatorias</div>
+          <div class="section-sub">oraciones breves para todo el día</div>
+        </div>
+      </div>
+      <div class="mystery-text" style="margin-top:0;">La comunión espiritual y las jaculatorias que rezaba san Josemaría, listas para usar en cualquier momento del día — con audio.</div>
+      <button class="listen-btn" id="open-jac-btn" style="width:100%;padding:10px;">🗣️ Abrir jaculatorias</button>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div>
           <div class="section-title">Qué es el Plan de Vida</div>
           <div class="section-sub">en las enseñanzas de san Josemaría</div>
         </div>
@@ -983,6 +1093,12 @@ async function render(){
       </div>
       <div class="mystery-text" style="margin:0 0 10px;">Enlaza directo a la página oficial de cartas pastorales y mensajes del Prelado del Opus Dei (Mons. Fernando Ocáriz) — cada vez que la abras verás la más reciente, sin que tengas que buscarla.</div>
       <a class="modal-link" href="https://opusdei.org/es/page/cartas-pastorales/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Leer la carta actual ↗</a>
+
+      <div class="item-row" style="border-bottom:none;border-top:1px solid var(--line);margin-top:10px;padding-top:14px;">
+        <div class="item-label">🔄 "Comenzar y recomenzar"</div>
+      </div>
+      <div class="mystery-text" style="margin:0 0 10px;">San Josemaría enseñaba que la vida interior es, precisamente, comenzar y recomenzar. Este artículo incluye un video con su propia voz respondiendo a la pregunta "¿el Señor no se cansa de nuestro comenzar y recomenzar?". Recomendado leer o escuchar al empezar cada mes.</div>
+      <a class="modal-link" href="https://opusdei.org/es/article/comenzar-recomenzar-perseverancia-video-san-josemaria/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Leer y escuchar ↗</a>
     </div>
 
     ${!storageOk?'<div class="err">No se pudo guardar. Vuelve a intentarlo en unos segundos.</div>':''}
@@ -1070,11 +1186,36 @@ function attachHandlers(){
     openRosaryBtn.addEventListener('click', openRosary);
   }
 
+  const ofrecimientoListenBtn = document.getElementById('ofrecimiento-listen-btn');
+  if(ofrecimientoListenBtn){
+    ofrecimientoListenBtn.addEventListener('click', ()=>{
+      speak(PRAYERS.ofrecimiento);
+    });
+  }
+
   const angelusListenBtn = document.getElementById('angelus-listen-btn');
   if(angelusListenBtn){
     angelusListenBtn.addEventListener('click', ()=>{
       speak(getAngelusInfo().spokenText);
     });
+  }
+
+  const dismissBannerBtn = document.getElementById('dismiss-banner-btn');
+  if(dismissBannerBtn){
+    dismissBannerBtn.addEventListener('click', async ()=>{
+      await safeSet(`banner-dismissed:${monthKey()}`, true);
+      render();
+    });
+  }
+
+  const openAnnualBtn = document.getElementById('open-annual-btn');
+  if(openAnnualBtn){
+    openAnnualBtn.addEventListener('click', openAnnualHistory);
+  }
+
+  const openJacBtn = document.getElementById('open-jac-btn');
+  if(openJacBtn){
+    openJacBtn.addEventListener('click', openJaculatorias);
   }
 
   const remEnabled = document.getElementById('rem-enabled');
@@ -1119,6 +1260,26 @@ function attachHandlers(){
       render();
     });
   });
+
+  const remVolume = document.getElementById('rem-volume');
+  const remVolumeLabel = document.getElementById('rem-volume-label');
+  if(remVolume){
+    remVolume.addEventListener('input', (e)=>{
+      if(remVolumeLabel) remVolumeLabel.textContent = `${e.target.value}%`;
+    });
+    remVolume.addEventListener('change', async (e)=>{
+      config.reminders.volume = +e.target.value;
+      await saveConfig();
+    });
+  }
+
+  const remTestSound = document.getElementById('rem-test-sound');
+  if(remTestSound){
+    remTestSound.addEventListener('click', ()=>{
+      const vol = (remVolume ? +remVolume.value : config.reminders.volume) / 100;
+      playBellTone(vol);
+    });
+  }
 
   const nextEx = document.getElementById('next-ex-input');
   if(nextEx){
@@ -1420,6 +1581,166 @@ async function startAutoRosary(){
     : 'Modo automático detenido.';
 }
 
+// Panel de "Racha anual": recorre mes a mes desde el último 19 de
+// marzo (fiesta de San José) hasta hoy, calculando el % de
+// cumplimiento diario de cada mes y cuántos meses seguidos estuvieron
+// completos al 100% cada día.
+async function openAnnualHistory(){
+  const overlay = document.getElementById('annual-overlay');
+  const panel = document.getElementById('annual-panel-content');
+  panel.innerHTML = `<div class="modal-title">Racha anual</div><div class="mystery-text">Calculando tu histórico…</div>`;
+  overlay.classList.add('show');
+
+  const now = new Date();
+  let sjYear = now.getFullYear();
+  const marchNineteen = new Date(sjYear, 2, 19);
+  if(now < marchNineteen) sjYear -= 1;
+  const startDate = new Date(sjYear, 2, 19);
+
+  const months = [];
+  let cursor = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+  const endCursor = new Date(now.getFullYear(), now.getMonth(), 1);
+  while(cursor <= endCursor){
+    months.push(new Date(cursor));
+    cursor.setMonth(cursor.getMonth()+1);
+  }
+
+  const monthResults = [];
+  for(const mDate of months){
+    const year = mDate.getFullYear();
+    const month = mDate.getMonth();
+    const isStartMonth = (year===startDate.getFullYear() && month===startDate.getMonth());
+    const isCurrentMonth = (year===now.getFullYear() && month===now.getMonth());
+    const firstDay = isStartMonth ? startDate.getDate() : 1;
+    const lastDay = isCurrentMonth ? now.getDate() : new Date(year, month+1, 0).getDate();
+
+    let sum=0, count=0, fullDays=0;
+    for(let day=firstDay; day<=lastDay; day++){
+      const d = new Date(year, month, day);
+      const entry = await getEntry('daily', todayKey(d));
+      const pct = config.daily.length ? entry.length/config.daily.length : 0;
+      sum += pct; count++;
+      if(pct>=1) fullDays++;
+    }
+    monthResults.push({
+      label: `${MONTH_NAMES[month]} ${year}`,
+      avgPct: count ? sum/count : 0,
+      fullDays, totalDays: count,
+      kept: count>0 && fullDays===count
+    });
+  }
+
+  let streak = 0;
+  for(const m of monthResults){
+    if(m.kept) streak++; else break;
+  }
+
+  panel.innerHTML = `
+    <div class="modal-title">Racha anual</div>
+    <div class="rosary-set-name">Desde el 19 de marzo de ${startDate.getFullYear()}</div>
+    <div class="rosary-progress">${streak} ${streak===1?'mes completo':'meses completos'} seguidos</div>
+    ${monthResults.slice().reverse().map(m=>`
+      <div class="mystery-card ${m.kept?'done':''}">
+        <div class="mystery-head">
+          <div class="mystery-title ${m.kept?'done':''}" style="text-transform:capitalize;">${escapeHtml(m.label)}</div>
+        </div>
+        <div class="mystery-text">${Math.round(m.avgPct*100)}% de cumplimiento promedio · ${m.fullDays}/${m.totalDays} días al 100%</div>
+      </div>
+    `).join('')}
+    <div class="modal-actions" style="margin-top:16px;">
+      <button class="modal-close" id="annual-close-btn">cerrar</button>
+    </div>
+  `;
+  document.getElementById('annual-close-btn').addEventListener('click', closeAnnualHistory);
+}
+function closeAnnualHistory(){
+  document.getElementById('annual-overlay').classList.remove('show');
+}
+
+// Panel de jaculatorias: la comunión espiritual y las oraciones breves
+// que rezaba san Josemaría, cada una con su propio botón de escuchar,
+// para usarlas en cualquier momento del día. Las Preces se guardan
+// como texto propio del usuario (ver nota de derechos de autor abajo).
+async function openJaculatorias(){
+  const overlay = document.getElementById('jac-overlay');
+  const panel = document.getElementById('jac-panel-content');
+  const savedPreces = (await safeGet('preces-text')) || '';
+
+  panel.innerHTML = `
+    <div class="modal-title">Jaculatorias</div>
+    <div class="rem-note" style="margin-bottom:14px;">Oraciones breves para "lanzar" a Dios en cualquier momento del día — mientras trabajas, caminas o esperas. San Josemaría las tomaba de la Escritura y de la tradición cristiana.</div>
+
+    <div class="mystery-card">
+      <div class="mystery-head">
+        <div class="mystery-title">Preces</div>
+      </div>
+      <div class="mystery-text" style="margin-bottom:8px;">Las Preces son un texto propio de la Prelatura (compuesto por san Josemaría), no de dominio público, así que esta app no lo trae incluido. Descárgalo gratis desde la página oficial y pégalo aquí una vez — quedará guardado solo en tu dispositivo, y el botón "Escuchar" leerá tu propio texto.</div>
+      <a class="modal-link" href="https://opusdei.org/es/article/las-preces-del-opus-dei/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-bottom:10px;">Descargar las Preces ↗</a>
+      <textarea id="preces-textarea" placeholder="Pega aquí el texto de las Preces (latín-castellano)…" style="width:100%;min-height:90px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--ink);font-family:'Crimson Pro', serif;font-size:14px;resize:vertical;">${escapeHtml(savedPreces)}</textarea>
+      <div class="mystery-actions" style="margin-top:10px;">
+        <button class="edit-toggle" id="preces-save-btn">💾 Guardar</button>
+        <button class="listen-btn" id="preces-speak-btn">🔊 Escuchar</button>
+      </div>
+    </div>
+
+    <div class="mystery-card">
+      <div class="mystery-head">
+        <div class="mystery-title">Comunión espiritual</div>
+      </div>
+      <div class="mystery-text">${escapeHtml(PRAYERS.comunionespiritual)}</div>
+      <div class="mystery-actions">
+        <button class="listen-btn" data-jac-speak="comunion">🔊 Escuchar</button>
+      </div>
+    </div>
+
+    ${JACULATORIAS.map((j,i)=>`
+      <div class="mystery-card">
+        <div class="mystery-text" style="margin-top:0;">${escapeHtml(j.text)}</div>
+        ${j.by ? `<div class="section-sub" style="display:block;margin-bottom:8px;">— ${escapeHtml(j.by)}</div>` : ''}
+        <div class="mystery-actions">
+          <button class="listen-btn" data-jac-idx="${i}">🔊 Escuchar</button>
+        </div>
+      </div>
+    `).join('')}
+
+    <div class="modal-actions" style="margin-top:6px;">
+      <button class="modal-close" id="jac-close-btn">cerrar</button>
+    </div>
+  `;
+
+  const precesTextarea = document.getElementById('preces-textarea');
+  document.getElementById('preces-save-btn').addEventListener('click', async ()=>{
+    await safeSet('preces-text', precesTextarea.value);
+    showToast('Preces guardadas en este dispositivo.');
+  });
+  document.getElementById('preces-speak-btn').addEventListener('click', ()=>{
+    const text = precesTextarea.value.trim();
+    if(!text){
+      showToast('Pega primero el texto de las Preces para poder escucharlo.');
+      return;
+    }
+    speak(text);
+  });
+
+  panel.querySelector('[data-jac-speak="comunion"]').addEventListener('click', ()=>{
+    speak(PRAYERS.comunionespiritual);
+  });
+  panel.querySelectorAll('[data-jac-idx]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const idx = +e.currentTarget.dataset.jacIdx;
+      speak(JACULATORIAS[idx].text);
+    });
+  });
+  document.getElementById('jac-close-btn').addEventListener('click', closeJaculatorias);
+
+
+  overlay.classList.add('show');
+}
+function closeJaculatorias(){
+  stopSpeaking();
+  document.getElementById('jac-overlay').classList.remove('show');
+}
+
 function showToast(msg){
   const t = document.getElementById('toast');
   if(!t) return;
@@ -1433,6 +1754,10 @@ function fireReminder(label, customMsg){
   showToast(customMsg || `Recordatorio ${label} · un momento para tu plan de vida`);
   try{
     if('vibrate' in navigator) navigator.vibrate([60,40,60]);
+  }catch(e){}
+  try{
+    const vol = config && config.reminders ? (config.reminders.volume||0)/100 : 0.7;
+    playBellTone(vol);
   }catch(e){}
   try{
     if('Notification' in window && Notification.permission === 'granted' && document.hidden){
@@ -1474,6 +1799,20 @@ async function checkReminders(){
       }
     }
   }
+
+  // 19 de marzo, fiesta de San José: se reinicia la racha anual,
+  // con doce campanadas (una sola vez al año).
+  if(now.getMonth()===2 && now.getDate()===19){
+    const yr = now.getFullYear();
+    const chimed = await safeGet(`sj-chime-fired:${yr}`);
+    if(!chimed){
+      await safeSet(`sj-chime-fired:${yr}`, true);
+      showToast('🔔 19 de marzo, San José — comienza un nuevo año de tu racha');
+      try{ if('vibrate' in navigator) navigator.vibrate([80,60,80,60,80,60,80]); }catch(e){}
+      const vol = (config.reminders.volume||70)/100;
+      playBellTolls(12, vol, 550);
+    }
+  }
 }
 
 (async function init(){
@@ -1489,6 +1828,16 @@ async function checkReminders(){
   const rosaryOverlay = document.getElementById('rosary-overlay');
   rosaryOverlay.addEventListener('click', (e)=>{
     if(e.target === rosaryOverlay) closeRosary();
+  });
+
+  const annualOverlay = document.getElementById('annual-overlay');
+  annualOverlay.addEventListener('click', (e)=>{
+    if(e.target === annualOverlay) closeAnnualHistory();
+  });
+
+  const jacOverlay = document.getElementById('jac-overlay');
+  jacOverlay.addEventListener('click', (e)=>{
+    if(e.target === jacOverlay) closeJaculatorias();
   });
 })();
 </script>
