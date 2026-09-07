@@ -413,18 +413,18 @@ const DEFAULT_CONFIG = {
       {label:'Horarios de Misa (adoración) ↗', url:'https://horariosdemisa.com/'}
     ]}},
     {id:'d11', label:'Ángelus / Regina Coeli', guide:{text:'Al mediodía, el Ángelus recuerda la Encarnación del Hijo de Dios (en tiempo de Pascua se reza el Regina Coeli en su lugar):\n\nV. El Ángel del Señor anunció a María.\nR. Y concibió por obra y gracia del Espíritu Santo.\nDios te salve, María…\n\nV. He aquí la esclava del Señor.\nR. Hágase en mí según tu palabra.\nDios te salve, María…\n\nV. Y el Verbo se hizo carne.\nR. Y habitó entre nosotros.\nDios te salve, María…\n\nV. Ruega por nosotros, Santa Madre de Dios.\nR. Para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo.\n\nOremos: Infunde, Señor, tu gracia en nuestras almas, para que los que hemos conocido, por el anuncio del Ángel, la Encarnación de tu Hijo Jesucristo, por su Pasión y Cruz seamos llevados a la gloria de su Resurrección. Por el mismo Jesucristo, Nuestro Señor. Amén.', url:''}},
-    {id:'d12', label:'Preces', guide:{text:'Las Preces son la oración diaria propia de los fieles del Opus Dei: alaban, dan gracias y piden por el Papa, la Iglesia, la Obra y sus necesidades. Es un texto compuesto por san Josemaría; puedes leerlo y descargarlo (latín, o latín-castellano) en la página oficial.', url:'https://opusdei.org/es-es/article/las-preces-del-opus-dei/'}}
+    {id:'d12', label:'Preces', guide:{text:'Las Preces son la oración diaria propia de los fieles del Opus Dei: alaban, dan gracias y piden por el Papa, la Iglesia, la Obra y sus necesidades. Es un texto compuesto por san Josemaría; puedes leerlo y descargarlo (latín, o latín-castellano) en la página oficial.', url:'https://opusdei.org/es-es/article/las-preces-del-opus-dei/'}},
+    {id:'d13', label:'Oración del Acordaos (Memorare)', guide:{text:'Una súplica breve y confiada a la Virgen, atribuida tradicionalmente a san Bernardo, muy usada para pedir su intercesión en cualquier necesidad:\n\nAcordaos, ¡oh piadosísima Virgen María!, que jamás se ha oído decir que ninguno de los que han acudido a vuestra protección, implorando vuestro auxilio, haya sido desamparado. Animado por esta confianza, a Vos acudo, Madre, Virgen de las vírgenes, y gimiendo bajo el peso de mis pecados me atrevo a comparecer ante Vos. Madre de Dios, no desechéis mis súplicas, antes bien, escuchadlas y acogedlas benignamente. Amén.', url:''}}
   ],
   weekly: [
     {id:'w1', label:'Confesión frecuente', guide:{text:'Acude a la confesión sacramental con la frecuencia que hayas acordado con tu director espiritual (habitualmente semanal o quincenal). Esta guía oficial del Opus Dei explica los pasos para prepararte bien e incluye exámenes de conciencia.', url:'https://opusdei.org/es/article/la-confesion-una-guia-breve/'}},
-    {id:'w2', label:'Círculo / clase de formación', guide:{text:'Asiste a la clase de formación semanal (círculo), donde se profundiza en un punto de vida interior o de doctrina.', url:''}},
-    {id:'w3', label:'Dirección espiritual', guide:{text:'La charla fraterna —también llamada Confidencia— es la conversación de dirección espiritual propia de los fieles del Opus Dei: se habla con sencillez y confianza sobre la propia vida interior, luchas y alegrías.', url:'https://opusdei.org/es/article/direccion-espiritual-en-el-opus-dei-acompanamiento-espiritual-en-el-opus-dei/'}}
+    {id:'w2', label:'Círculo / clase de formación', guide:{text:'Asiste a la clase de formación semanal (círculo), donde se profundiza en un punto de vida interior o de doctrina.', url:''}}
   ],
   reminders: {enabled:false, times:['07:30','13:00','18:30','21:30'], permissionAsked:false, volume:70},
   rosary: {mode:'session', times:['07:00','11:00','14:00','17:00','20:00'], remindersEnabled:false, permissionAsked:false},
   monthly: [
     {id:'m1', label:'Día de Recogimiento', guide:{text:'Un día (o parte de él) dedicado a la oración pausada, en un ambiente de recogimiento, para revisar el rumbo de tu vida interior.', url:''}},
-    {id:'m2', label:'Confianza mensual amplia', guide:{text:'Una confianza más extensa, con tiempo para repasar el mes entero: el plan de vida, el trabajo, la familia, el apostolado.', url:''}}
+    {id:'m2', label:'Charla de dirección espiritual', guide:{text:'La charla fraterna —también llamada Confidencia— es la conversación de dirección espiritual propia de los fieles del Opus Dei: se habla con sencillez y confianza sobre la propia vida interior, luchas y alegrías.', url:'https://opusdei.org/es/article/direccion-espiritual-en-el-opus-dei-acompanamiento-espiritual-en-el-opus-dei/'}}
   ],
   nextExercises: ''
 };
@@ -434,7 +434,8 @@ const PRAYERS = {
   avemaria: 'Dios te salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.',
   gloria: 'Gloria al Padre, y al Hijo, y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.',
   ofrecimiento: '¡Serviam! Todos mis pensamientos, todas mis palabras y las obras todas de este día, te las ofrezco, Señor, y mi vida entera, por amor.',
-  comunionespiritual: 'Yo quisiera, Señor, recibiros con aquella pureza, humildad y devoción con que os recibió vuestra Santísima Madre, con el espíritu y fervor de los Santos.'
+  comunionespiritual: 'Yo quisiera, Señor, recibiros con aquella pureza, humildad y devoción con que os recibió vuestra Santísima Madre, con el espíritu y fervor de los Santos.',
+  acordaos: 'Acordaos, ¡oh piadosísima Virgen María!, que jamás se ha oído decir que ninguno de los que han acudido a vuestra protección, implorando vuestro auxilio, haya sido desamparado. Animado por esta confianza, a Vos acudo, Madre, Virgen de las vírgenes, y gimiendo bajo el peso de mis pecados me atrevo a comparecer ante Vos. Madre de Dios, no desechéis mis súplicas, antes bien, escuchadlas y acogedlas benignamente. Amén.'
 };
 
 const JACULATORIAS = [
@@ -637,6 +638,19 @@ async function loadConfig(){
     if(!config.reminders) config.reminders = fresh.reminders;
     if(config.reminders.volume === undefined) config.reminders.volume = 70;
     if(!config.rosary) config.rosary = fresh.rosary;
+
+    // Migración: "Dirección espiritual" pasó de norma semanal a mensual.
+    if(config.weekly && config.weekly.some(it=>it.id==='w3')){
+      config.weekly = config.weekly.filter(it=>it.id!=='w3');
+      const m2idx = config.monthly.findIndex(it=>it.id==='m2');
+      const newM2 = fresh.monthly.find(it=>it.id==='m2');
+      if(m2idx===-1){
+        config.monthly.push(newM2);
+      } else if(config.monthly[m2idx].label === 'Confianza mensual amplia'){
+        config.monthly[m2idx] = newM2;
+      }
+    }
+
     await safeSet('items-config', config);
   }
 }
@@ -932,6 +946,7 @@ async function render(){
           <div class="chk ${done?'done':''}" data-kind="daily" data-id="${it.id}"></div>
           <div class="item-label ${done?'done':''}">${escapeHtml(displayLabel)}</div>
           ${it.id==='d1' ? '<button class="rosary-btn" id="ofrecimiento-listen-btn" title="Escuchar">🔊</button>' : ''}
+          ${it.id==='d13' ? '<button class="rosary-btn" id="acordaos-listen-btn" title="Escuchar">🔊</button>' : ''}
           ${it.id==='d7' ? '<button class="rosary-btn" id="open-rosary-btn" title="Rezar el Rosario">📿</button>' : ''}
           ${it.id==='d11' ? '<button class="rosary-btn" id="angelus-listen-btn" title="Escuchar">🔊</button>' : ''}
           <button class="guide-btn" data-kind="daily" data-id="${it.id}" title="Guía">i</button>
@@ -1190,6 +1205,13 @@ function attachHandlers(){
   if(ofrecimientoListenBtn){
     ofrecimientoListenBtn.addEventListener('click', ()=>{
       speak(PRAYERS.ofrecimiento);
+    });
+  }
+
+  const acordaosListenBtn = document.getElementById('acordaos-listen-btn');
+  if(acordaosListenBtn){
+    acordaosListenBtn.addEventListener('click', ()=>{
+      speak(PRAYERS.acordaos);
     });
   }
 
@@ -1657,14 +1679,13 @@ function closeAnnualHistory(){
   document.getElementById('annual-overlay').classList.remove('show');
 }
 
-// Panel de jaculatorias: la comunión espiritual y las oraciones breves
-// que rezaba san Josemaría, cada una con su propio botón de escuchar,
-// para usarlas en cualquier momento del día. Las Preces se guardan
-// como texto propio del usuario (ver nota de derechos de autor abajo).
+// Panel de jaculatorias: la comunión espiritual, el audio oficial de
+// las Preces, y las oraciones breves que rezaba san Josemaría, cada
+// una con su propio botón de escuchar, para usarlas en cualquier
+// momento del día.
 async function openJaculatorias(){
   const overlay = document.getElementById('jac-overlay');
   const panel = document.getElementById('jac-panel-content');
-  const savedPreces = (await safeGet('preces-text')) || '';
 
   panel.innerHTML = `
     <div class="modal-title">Jaculatorias</div>
@@ -1674,13 +1695,9 @@ async function openJaculatorias(){
       <div class="mystery-head">
         <div class="mystery-title">Preces</div>
       </div>
-      <div class="mystery-text" style="margin-bottom:8px;">Las Preces son un texto propio de la Prelatura (compuesto por san Josemaría), no de dominio público, así que esta app no lo trae incluido. Descárgalo gratis desde la página oficial y pégalo aquí una vez — quedará guardado solo en tu dispositivo, y el botón "Escuchar" leerá tu propio texto.</div>
-      <a class="modal-link" href="https://opusdei.org/es/article/las-preces-del-opus-dei/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-bottom:10px;">Descargar las Preces ↗</a>
-      <textarea id="preces-textarea" placeholder="Pega aquí el texto de las Preces (latín-castellano)…" style="width:100%;min-height:90px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--ink);font-family:'Crimson Pro', serif;font-size:14px;resize:vertical;">${escapeHtml(savedPreces)}</textarea>
-      <div class="mystery-actions" style="margin-top:10px;">
-        <button class="edit-toggle" id="preces-save-btn">💾 Guardar</button>
-        <button class="listen-btn" id="preces-speak-btn">🔊 Escuchar</button>
-      </div>
+      <div class="mystery-text" style="margin-bottom:10px;">Escucha la grabación oficial de la Prelatura del Opus Dei:</div>
+      <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" style="border-radius:8px;" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/opusdei/preces-opus-dei&color=%23c9a44c&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+      <a class="modal-link" href="https://opusdei.org/es/article/las-preces-del-opus-dei/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:10px;">Ver texto y descargas ↗</a>
     </div>
 
     <div class="mystery-card">
@@ -1708,20 +1725,6 @@ async function openJaculatorias(){
     </div>
   `;
 
-  const precesTextarea = document.getElementById('preces-textarea');
-  document.getElementById('preces-save-btn').addEventListener('click', async ()=>{
-    await safeSet('preces-text', precesTextarea.value);
-    showToast('Preces guardadas en este dispositivo.');
-  });
-  document.getElementById('preces-speak-btn').addEventListener('click', ()=>{
-    const text = precesTextarea.value.trim();
-    if(!text){
-      showToast('Pega primero el texto de las Preces para poder escucharlo.');
-      return;
-    }
-    speak(text);
-  });
-
   panel.querySelector('[data-jac-speak="comunion"]').addEventListener('click', ()=>{
     speak(PRAYERS.comunionespiritual);
   });
@@ -1732,7 +1735,6 @@ async function openJaculatorias(){
     });
   });
   document.getElementById('jac-close-btn').addEventListener('click', closeJaculatorias);
-
 
   overlay.classList.add('show');
 }
